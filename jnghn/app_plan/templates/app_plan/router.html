@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block title %} <title>Choose Plan Type</title> {% endblock %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="border rounded p-3 form-group">
+        <div class="text-center mb-3">
+            <span class="h1">Plan Period</span>
+        </div>
+        <div class="d-flex flex-wrap">
+            <div class="flex-fill">
+                <input class="form-control text-center" value="Period" readonly>
+            </div>
+            <div class="flex-fill">
+                <input type="number" class="form-control text-center" name="period" value="1" min="1">
+            </div>
+        </div>
+    </div>
+    <div class="d-flex">
+        <button type="submit" class="btn ml-auto bg-save">Next  <i class="fa fa-arrow-right"></i></button>
+    </div>
+</form>
+{% endblock %}

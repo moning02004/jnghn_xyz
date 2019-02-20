@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Log In</title>{% endblock %}
+
+{% block content %}
+<div class="my-4 text-center bg-main rounded p-3">
+    <a href="{% url 'app_main:index' %}" class="h1"  style="text-decoration: none;">Memories</a>
+</div>
+<div class="container border pt-3 mb-3 thin-view">
+    {% if message %}
+    <div class="alert alert-primary" role="alert">{{message}}</div>
+    {% endif %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="font-weight-bold">Username</label>
+            <input class="form-control" type="text" name="username">
+        </div>
+        <div class="form-group">
+            <label class="font-weight-bold">Password</label>
+            <input class="form-control" type="password" name="password">
+        </div>
+        <div class="my-3">
+            forget Password?
+            <a href="{% url 'app_user:find' %}">Click here</a>
+        </div>
+        <div class="form-group">
+            <input class="btn form-control bg-login" type="submit" value="Log In">
+            <div class="dropdown-divider"></div>
+            <a class="btn form-control text-dark bg-register" href="{% url 'app_user:register' %}">Create Account</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

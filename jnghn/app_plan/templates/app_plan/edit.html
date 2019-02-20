@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+
+{% block title %}<title>Plan edit : {{ plan.title }}</title>{% endblock %}
+
+{% block content %}
+<div class="large-view my-4 ">
+    <span class="h2">Edit plan</span>
+</div>
+<form action="" method="post" class="mb-5" onsubmit="return checkPassword();">
+    {% csrf_token %}
+    <div class="border p-3 form-group">
+        <div class="form-group mt-3">
+            <label class="form-control-label">Title</label>
+            <input class="form-control" type="text" name="title" value="{{ plan.title }}">
+        </div>
+        <div class="d-flex flex-wrap">
+            <div class="form-group flex-fill">
+                <label class="form-control-label">Date</label>
+                <input type="date" name="when" class="form-control" value="{{ plan.when|date:"Y-m-d" }}">
+            </div>
+            <div class="form-group flex-fill">
+                <label class="form-control-label">Location</label>
+                <input class="form-control" type="text" name="where" value="{{ plan.where }}">
+            </div>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div class="dropdown-divider"></div>
+
+        {% for detail in plan.detail_set.all %}
+            <div class="d-flex flex-wrap">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="e_place" value="{{ detail.place }}">
+                </div>
+                <div class="form-group flex-grow-1">
+                    <input class="form-control" type="text" name="e_content" value="{{ detail.content }}">
+                </div>
+            </div>
+        {% endfor %}
+        <div class="detail-field">
+            <div class="d-flex flex-wrap">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="place">
+                </div>
+                <div class="form-group flex-grow-1">
+                    <input class="form-control" type="text" name="content">
+                </div>
+            </div>
+        </div>
+        <div class="d-flex form-group flex-wrap">
+            <button type="button" class="btn ml-auto bg-plus col-lg-2 plan-button-p"><i class="fa fa-plus"></i></button>
+            <button type="button" class="btn bg-minus col-lg-2 plan-button-m"><i class="fa fa-minus"></i></button>
+        </div>
+    </div>
+    <div class="d-flex flex-wrap form-group">
+        <a class="btn dropup ml-auto col-lg-2 password-save bg-password-save" data-toggle="dropdown">Password & Save</a>
+        <div class="dropdown-menu p-3">
+            <div class="border p-2 m-2">If you don't type the password,<br>it is the same as the "Save" button.</div>
+            <div class="form-group">
+                <label class="form-control-label">Password</label>
+                <input class="form-control" type="password" name="password1" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label class="form-control-label">re Password</label>
+                <input class="form-control" type="password" name="password2" placeholder="re Password">
+            </div>
+            <div class="text-right">
+                <input type="submit" class="btn bg-save" name="save" value="Password_Save">
+            </div>
+        </div>
+        <input type="submit" class="btn bg-save col-lg-2" name="save" value="Save">
+        <a href="{% url 'app_plan:index' %}" class="btn bg-cancel col-lg-2 text-white">Cancel</a>
+    </div>
+</form>
+{% endblock %}

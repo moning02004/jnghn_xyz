@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+<title>forgot your account? </title>
+{% endblock %}
+
+
+{% block content %}
+<div class="container border thin-view pb-3">
+    <h3 class="text-center mt-2 mb-3">Create account</h3>
+    <div class="m-0 alert pl-5" role="alert">{{message}}</div>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="font-weight-bold">Name</label>
+            <input class="form-control" type="text" name="name">
+        </div>
+        <div class="form-group">
+            <label class="font-weight-bold">Your Email</label>
+            <div class="input-group">
+                <input class="form-control" type="text" name="email" value="{{ email }}">
+                <span class="input-group-text">@</span>
+                <input type="text" hidden name="others" class="form-control">
+                <select class="form-control" name="domain">
+                    <option value="@naver.com">naver.com</option>
+                    <option value="@nate.com">nate.com</option>
+                    <option value="@daum.net">daum.com</option>
+                    <option value="other">직접 입력</option>
+                </select>
+            </div>
+        </div>
+        <div class="text-center">
+            <input class="btn w-100 submit bg-red" type="submit" value="Next">
+        </div>
+    </form>
+    <div class="mt-5 container">
+        <ul>
+        </ul>
+    </div>
+</div>
+{% endblock %}

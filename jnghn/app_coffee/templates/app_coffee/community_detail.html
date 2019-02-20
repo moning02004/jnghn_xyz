@@ -1,0 +1,71 @@
+{% extends 'layout.html' %}
+
+{% block title %}<title>Coffee : {{ post.title }}</title>{% endblock %}
+
+{% block content %}
+<nav class="my-3">
+    <div class="nav nav-tabs">
+        <a class="nav-item nav-link text-dark {{ detail_position }}" href="#content" data-toggle="tab" role="tab">Content</a>
+        <a class="nav-item nav-link text-dark {{ comment_position }}" href="#comment" data-toggle="tab" role="tab">Comment</a>
+    </div>
+</nav>
+<div class="tab-content">
+    <div class="tab-pane fade {{ detail_position }}" id="content" role="tabpanel">
+        <div class="border rounded p-3">
+            <div class="d-flex flex-wrap form-group">
+                <div><input type="text" class="form-control text-center" value="Title" readonly></div>
+                <div class="flex-fill">
+                    <input type="text" class="form-control bg-white text-center" value="{{ post.title }}" readonly>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap form-group">
+                <div><input type="text" class="form-control text-center" value="Author" readonly></div>
+                <div class="flex-fill">
+                    <input type="text" class="form-control bg-white text-center" value="{{ post.author }}" readonly>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap form-group">
+                <div><input type="text" class="form-control text-center" value="Created" readonly></div>
+                <div class="flex-fill">
+                    <input type="text" class="form-control bg-white text-center" value="{{ post.created | date:'Y. m. d. H:i'}}" readonly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control text-center" value="Content" readonly>
+                <textarea class="form-control bg-white" name="content" readonly>{{ post.content }}</textarea>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade {{ comment_position }}" id="comment" role="tabpanel">
+        {% for comment in post.communitycomment_set.all %}
+        <div class="d-flex mb-3">
+            <div class="border p-2 rounded">
+                <span><i class="fa fa-user"></i> {{ comment.author }}</span>
+            </div>
+            <div class="my-auto">
+                <span class="mx-3">{{ comment.content }}</span>
+                <small class="">{{ comment.created | date:"Y. m. d H:i" }}</small>
+            </div>
+        </div>
+        {% endfor %}
+        {% if user.is_authenticated %}
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                <textarea name="content" class="form-control"></textarea>
+                <button type="submit" class="btn" name="button" value="comment"><i class="fa fa-pen"></i></button>
+            </div>
+        </form>
+        {% endif %}
+    </div>
+</div>
+
+<div class="d-flex mb-3">
+  <div class="ml-auto">
+    <a href="{% url 'app_coffee:community_edit' post.id %}" class="btn text-dark border m-1"><i class="fa fa-edit text-dark"></i></a>
+    <a href="#" class="btn text-dark border m-1"><i class="fa fa-trash-alt text-dark"></i></a>
+    <a href="{% url 'app_coffee:community' %}" class="btn text-dark border m-1"><i class="fa fa-sign-out-alt text-dark"></i></a>
+  </div>
+</div>
+{% endblock %}

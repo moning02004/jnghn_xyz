@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+
+{% block title %}<title>Review : {{ plan.title }}</title>{% endblock %}
+
+{% block content %}
+<div class="large-view my-4">
+    <span class="h2">Writing Review : </span><span class="h5">{{ plan.title }}</span>
+</div>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="border rounded p-3">
+        <div class="d-flex flex-wrap form-group">
+            <div><input type="text" class="form-control text-center" name="title" value="Title" readonly></div>
+            <div class="flex-grow-1">
+                <input type="text" class="form-control" name="title">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control text-center" value="Content" readonly>
+            <textarea class="form-control textarea-content" name="content"></textarea>
+        </div>
+
+        <div class="form-group">
+            <div class="input-group mb-1">
+                <input class="form-control text-center" value="Cost" readonly>
+                <div class="input-group-append">
+                    <button type="button" class="btn bg-plus button-cp"><i class="fa fa-plus"></i></button>
+                    <button type="button" class="btn bg-minus button-cm"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="cost-field">
+                <div class="d-flex flex-wrap form-group">
+                    <div class="input-group">
+                        <div class="flex-fill"><input type="text" class="form-control" name="cost_content" placeholder="Content"></div>
+                        <div class=""><input type="number" class="form-control" name="cost" placeholder="0"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="input-group mb-1">
+                <input class="form-control text-center" value="Image" readonly>
+                <div class="input-group-append">
+                    <button type="button" class="btn bg-plus button-p"><i class="fa fa-plus"></i></button>
+                    <button type="button" class="btn bg-minus button-m"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="field">
+                <div class="form-group">
+                    <input type="file" name="image" class="form-control-file border rounded p-1 border-primary" accept="image/*" multiple>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex m-3">
+        <input class="btn mr-1 my-1 ml-auto col-lg-2 " type="submit" value="Save">
+        <a href="{% url 'app_review:index' %}" class="btn border text-dark col-lg-2 m-1" style="background-color:rgba(255, 64, 48, 0.3);">Cancel</a>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Create account</title>{% endblock %}
+
+{% block content %}
+<div class="text-center mx-auto my-3 bg-main rounded p-3">
+    <a class="h1" href="{% url 'app_main:index' %}" style="text-decoration: none;">Memories</a>
+</div>
+<div class="container border rounded mb-4 thin-view">
+    {% if message %}
+    <div class="alert alert-primary mt-3" role="alert">{{message}}</div>
+    {% endif %}
+
+    <form action="" method="post" onsubmit="return registerCheck();" class="mt-3">
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="font-weight-bold">Your Name</label>
+            <input class="form-control" type="text" name="name" value="{{ userObject.first_name }}">
+        </div>
+        <div class="form-group">
+            <label class="font-weight-bold">Your Email</label>
+            <input class="form-control" type="text" name="email" value="{{ userObject.email }}">
+        </div>
+        <div class="form-group">
+            <label class="font-weight-bold">Username</label>
+            <div class="input-group">
+                <input class="form-control" type="text" name="username" value="{{ userObject.username }}">
+                <div class="input-group-append">
+                    <button type="submit" name="user_check" value="user_check" class="btn bg-main"><i class="fa fa-user" style="color:{{ user_check }};"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-weight-bold">Password</label>
+            <div class="input-group">
+                <input class="form-control password" type="password" name="password">
+                <div class="input-group-append">
+                    <span class="input-group-text input-password"><i></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-weight-bold">Re-enter Password</label>
+            <div class="input-group">
+                <input class="form-control re-password" type="password" name="password">
+                <div class="input-group-append">
+                    <span class="input-group-text input-re-password"><i></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <input class="btn w-100 submit" type="submit" value="Create Account" style="background: rgba(255, 64, 48, 0.3);;">
+        </div>
+    </form>
+    <hr>
+    <div class="mb-3">
+        Already have an account?
+        <a href="{% url 'app_user:login' %}">Log In</a>
+    </div>
+</div>
+{% endblock %}

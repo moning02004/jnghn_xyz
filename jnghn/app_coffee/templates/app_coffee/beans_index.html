@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block title %}<title>Coffee beans</title>{% endblock %}
+
+{% block content %}
+<div class="d-flex large-view border-bottom my-1">
+    <span class="h2">Coffee Beans</span>
+    {% if user.is_superuser %}
+    <a href="{% url 'app_coffee:beans_new' %}" class="btn border ml-auto my-auto"><i class="fa fa-pen text-dark"></i></a>
+    {% endif %}
+</div>
+<div class="mb-5">
+    {% for beans in beans_list %}
+    <div class="my-3">
+        <p class="h5 ml-2">{{ forloop.counter }}. {{ beans.nation }} {{ beans.name }}</p>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                <textarea class="form-control bg-white" readonly>{{ beans.content }}</textarea>
+                <div class="input-group-append">
+                    <button type="button" class="btn" name="button" value="heart" title="{{ beans.heart_set.all | length }}"><i class="fa fa-heart" style="color: white;"></i></button>
+                    {% if user.is_superuser %}
+                    <a href="{% url 'app_coffee:beans_edit' beans.id %}" class="btn border my-auto"><i class="fa fa-edit text-dark"></i></a>
+                    {% endif %}
+                </div>
+            </div>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

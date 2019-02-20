@@ -1,0 +1,120 @@
+{% extends 'layout.html' %}
+
+{% block title %}<title>Plan : {{ plan.title }}</title>{% endblock %}
+
+{% block content %}
+<nav class="my-3">
+  <div class="nav nav-tabs" role="tablist">
+    <a class="nav-item nav-link active text-dark" data-toggle="tab" href="#outline" role="tab">Outline</a>
+    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#detail" role="tab">Detail</a>
+    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#comment" role="tab">Comment [{{ plan.commentplan_set.all|length }}]</a>
+  </div>
+</nav>
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="outline" role="tabpanel" aria-labelledby="outline-tab">
+        <div class="border rounded p-3">
+            <div class="d-flex flex-wrap form-group">
+                <div><input type="text" class="text-center form-control" value="Title" readonly></div>
+                <div class="flex-grow-1">
+                    <input type="text" class="text-center form-control bg-white" value="{{ plan.title }}" readonly>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap form-group">
+                <div><input type="text" class="text-center form-control" value="When" readonly></div>
+                <div class="flex-grow-1">
+                    <input type="text" class="text-center form-control bg-white" value="{{ plan.day_from |date:'Y. m. d.'}}" readonly>
+                </div>
+                {% if plan.period > 2 %}
+                <div class="flex-grow-1">
+                    <input type="text" class="text-center form-control bg-white" value="{{ plan.day_to |date:'Y. m. d.'}}" readonly>
+                </div>
+                {% endif %}
+            </div>
+            <div class="d-flex flex-wrap form-group">
+                <div><input type="text" class="text-center form-control" value="Where" readonly></div>
+                <div class="flex-grow-1">
+                    <input type="text" class="text-center form-control bg-white" value="{{ plan.where }}" readonly>
+                </div>
+            </div>
+
+            <div class="d-flex flex-wrap form-group">
+                <div><input type="text" class="text-center form-control" value="Do" readonly></div>
+                <div class="flex-grow-1">
+                    <div class="input-group">
+                        <input type="text" class="text-center form-control bg-white" value="{{ plan.finish }}" readonly>
+                        {% if user.is_authenticated and user == plan.author %}
+                        <div class="input-group-append">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn" name="button" value="Finish">Yes</button>
+                                <button type="submit" class="btn" name="button" value="Not Finish">No</button>
+                            </form>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex flex-wrap">
+                {% if user.is_authenticated and user == plan.author and plan.finish == "Yes" %}
+                <a href="{% url 'app_review:new' plan.id %}" class="btn my-auto ml-auto bg-main text-dark">Review <i class="my-auto fa fa-arrow-right"></i></a>
+                {% endif %}
+            </div>
+            <form action="" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn" name="button" value="heart"><i class="fa fa-heart" style="color: {{ color }};"></i> {{ plan.heartplan_set.all | length }}</button>
+            </form>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="detail" role="tabpanel" aria-labelledby="detail-tab">
+        <div class="border rounded p-3">
+            {% for days in plan.days_set.all %}
+            <div class="form-group">
+                <span class="h6">day {{ forloop.counter }}</span>
+                {% for detail in days.detail_set.all %}
+                <div class="d-flex flex-wrap">
+                    <div><input class="form-control text-center" value="{{ detail.place }}" readonly></div>
+                    <div class="flex-grow-1">
+                        <input readonly class="form-control bg-white text-center" type="text" value="{{ detail.content }}">
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="tab-pane fade" id="comment" role="tabpanel" aria-labelledby="comment-tab">
+        {% for comment in plan.commentplan_set.all %}
+        <div class="d-flex mb-3">
+            <div class="border p-2 rounded">
+                <span><i class="fa fa-user"></i> {{ comment.user }}</span>
+            </div>
+            <div class="my-auto">
+                <span class="mx-3">{{ comment.content }}</span>
+                <small class="">{{ comment.created | date:"Y. m. d H:i" }}</small>
+            </div>
+        </div>
+        {% endfor %}
+        {% if user.is_authenticated %}
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                <textarea name="content" class="form-control"></textarea>
+                <button type="submit" class="btn" name="button" value="comment"><i class="fa fa-pen"></i></button>
+            </div>
+        </form>
+        {% endif %}
+    </div>
+</div>
+<div class="d-flex" style="margin-bottom: 20%;">
+    <div class="ml-auto">
+        {% if plan.author == user or user.is_authenticated %}
+        {% if plan.finish == "No" %}
+        <a class="btn text-dark border m-1" href="{% url 'app_plan:edit' plan.id %}"><i class="fa fa-edit"></i></a>
+        {% endif %}
+        <a class="btn text-dark border m-1" href="{% url 'app_plan:delete' plan.id %}"><i class="fa fa-trash-alt"></i></a>
+        {% endif %}
+        <a class="btn text-dark border m-1" href="{% url 'app_plan:index' %}"><i class="fa fa-sign-out-alt"></i></a>
+    </div>
+</div>
+{% endblock %}

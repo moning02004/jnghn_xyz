@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block title %}<title>About Site</title>{% endblock %}
+
+{% block content %}
+<nav class="nav nav-tabs">
+    <a href="#outline" class="nav-item nav-link text-dark active" data-toggle="tab" role="tab">Outline</a>
+    <a href="#plan" class="nav-item nav-link text-dark" data-toggle="tab" role="tab">Plan</a>
+    <a href="#review" class="nav-item nav-link text-dark" data-toggle="tab" role="tab">Review</a>
+    <a href="#archive" class="nav-item nav-link text-dark" data-toggle="tab" role="tab">Archive</a>
+    <a href="#coffee" class="nav-item nav-link text-dark" data-toggle="tab" role="tab">Coffee</a>
+</nav>
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="outline" role="tabpanel">
+        <div class="border rounded p-3 mt-3">
+            <p>2018년 7월부터 Python과 Django, HTML, CSS, JS를 공부하여 만들어 본 홈페이지입니다. 9월부터 이듬해 1월까지는 학교를 다니느라 진행하지 못했습니다.</p>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="plan" role="tabpanel">
+        <div class="border rounded p-3 mt-3">
+            <p>데이트 계획 혹은 나만의 여행을 즐기는 분들을 위한 공간입니다. 계획한 일들을 한눈에 볼 수 있도록 했고 여러 사람들과의 소통을 할 수도 있습니다.</p>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="review" role="tabpanel">
+        <div class="border rounded p-3 mt-3">
+            <p>데이트 계획 혹은 나만의 여행을 즐긴 후 후기를 작성할 수 있는 공간입니다.</p>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="archive" role="tabpanel">
+        <div class="border rounded p-3 mt-3">
+            <p>공유하고 싶은 파일 혹은 정보를 올려두는 공간입니다.</p>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="coffee" role="tabpanel">
+        <div class="border rounded p-3 mt-3">
+            <p>커피에 관심이 있는 분들을 위한 공간입니다. 원두 가계부를 쓸 수도 있고 여러 사람들과의 소통을 할 수도 있습니다. 또한 원두 정보를 알아볼 수도 있습니다.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block title %}<title>Memories</title>{% endblock %}
+
+{% block picture %}
+<div style="height: 300px;" class="border bg-picture">
+
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="mt-4">
+    <div class="d-flex flex-wrap mb-2 ">
+        <div class="flex-fill">
+            <a href="{% url 'app_notice:index' %}" class="h2 my-auto">Notice</a>
+            <div class="border rounded p-3">
+                {% if not notice_list %}
+                <p class="text-center">Not Exist</p>
+                {% else %}
+                {% for notice in notice_list %}
+                <div class="d-flex p-1 border-bottom">
+                    <span><i class="fa fa-user"></i> {{ notice.author}}</span>
+                    <span class="ml-auto">{{ notice.content}}</span>
+                    <span class="ml-auto"><i></i>{{ notice.created|date:"Y. m. d. H:i"}}</span>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

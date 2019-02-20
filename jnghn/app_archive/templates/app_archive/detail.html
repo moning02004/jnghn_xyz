@@ -1,0 +1,88 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+<title>Detail Board</title>
+{% endblock %}
+
+{% block content %}
+<nav class="nav nav-tabs my-3">
+    <a href="#content" class="nav-item nav-link text-dark active" id="content-tab" data-toggle="tab">Content</a>
+    <a href="#comment" class="nav-item nav-link text-dark" id="comment-tab" data-toggle="tab">Comment</a>
+</nav>
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="content">
+        <div class="border rounded p-3">
+            <div class="d-flex flex-nowrap form-group">
+                <div><input class="form-control text-center" value="Title" readonly></div>
+                <div class="flex-fill">
+                    <input class="form-control text-center bg-white" value="{{ archive.title }}" readonly>
+                </div>
+            </div>
+            <div class="d-flex flex-nowrap form-group">
+                <div><input class="form-control text-center" value="Author" readonly></div>
+                <div class="flex-fill">
+                    <input class="form-control text-center bg-white" value="{{ archive.author }}" readonly>
+                </div>
+            </div>
+            <div class="d-flex flex-nowrap form-group">
+                <div><input class="form-control text-center" value="Created" readonly></div>
+                <div class="flex-fill">
+                    <input class="form-control text-center bg-white" value="{{ archive.created | date:'Y. m. d. H:i'}}" readonly>
+                </div>
+            </div>
+            <div class="dropdown-divider"></div>
+            <div class="">
+                <textarea class="form-control bg-white" readonly>{{ archive.content }}</textarea>
+            </div>
+            <div class="dropdown-divider"></div>
+            <div class="border rounded p-3 bg-picture">
+                {% if archive.attachment_set.all %}
+                {% for file in archive.attachment_set.all %}
+                <i class="fa fa-circle small"></i> <a href="{{ file.file.url }}" class="text-dark" download="board_{{file.filename}}">{{file.filename}}</a>
+                (<small class="font-italic"><a href="{{ file.file.url }}" onclick="return newWindow('{{ file.file.url }}');">미리보기</a></small>)
+                {% endfor %}
+                {% else %}
+                    <span> Nothing </span>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="comment">
+        <div class="border rounded p-3">
+            {% for comment in archive.commentarchive_set.all %}
+            <div class="d-flex mb-3">
+                <div class="border p-2 rounded">
+                    <span><i class="fa fa-user"></i> {{ comment.author }}</span>
+                </div>
+                <div class="my-auto">
+                    <span class="mx-3">{{ comment.content }}</span>
+                    <small class="">{{ comment.created | date:"Y. m. d H:i" }}</small>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="dropdown-divider"></div>
+            {% if user.is_authenticated %}
+            <form action="" method="post">
+            {% csrf_token %}
+                <div class="input-group">
+                    <textarea name="comment" class="form-control"></textarea>
+                    <button type="submit" class="btn" name="button" value="comment"><i class="fa fa-pen"></i></button>
+                </div>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="d-flex my-3">
+    <div class="ml-auto">
+        {% if archive.author == user or request.user.is_superuser %}
+        <a class="btn text-dark border m-1" href="{% url 'app_archive:edit' archive.id %}"><i class="fa fa-edit"></i></a>
+        <a class="btn text-dark border m-1" href="{% url 'app_archive:delete' archive.id %}"><i class="fa fa-trash-alt"></i></a>
+        {% endif %}
+        <a class="btn text-dark border m-1" href="{% url 'app_archive:index' %}"><i class="fa fa-sign-out-alt"></i></a>
+    </div>
+</div>
+{% endblock %}

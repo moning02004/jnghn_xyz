@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block title %}<title>Coffee beans</title>{% endblock %}
+
+{% block content %}
+<div class="large-view my-3">
+    <span class="h2">New Account Book</span>
+</div>
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="border rounded p-3">
+        <div class="d-flex flex-wrap">
+            <div class="form-group">
+                <input class="form-control text-center" value="Name" readonly>
+            </div>
+            <div class="form-group flex-fill">
+                <input type="text" class="form-control" name="name" placeholder="name">
+            </div>
+        </div>
+        <div class="d-flex flex-wrap">
+            <div class="form-group">
+                <input class="form-control text-center" value="Purchase Place" readonly>
+            </div>
+            <div class="form-group flex-fill">
+                <input type="text" class="form-control" name="site" placeholder="purchase place">
+            </div>
+        </div>
+        <div class="d-flex flex-wrap">
+            <div class="form-group">
+                <input class="form-control text-center" value="Purchase Date" readonly>
+            </div>
+            <div class="form-group flex-fill">
+                <input type="date" class="form-control" name="date">
+            </div>
+        </div>
+        <div class="d-flex flex-wrap">
+            <div class="form-group">
+                <input class="form-control text-center" value="Amount" readonly>
+            </div>
+            <div class="form-group flex-fill">
+                <input type="number" class="form-control" name="amount" placeholder="0">
+            </div>
+        </div>
+        <div class="d-flex flex-wrap">
+            <div class="form-group">
+                <input class="form-control text-center" value="Price" readonly>
+            </div>
+            <div class="form-group flex-fill">
+                <input type="number" class="form-control" name="price" placeholder="0">
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-wrap my-3">
+        <input type="submit" class="btn col-lg-2 ml-auto bg-save" value="Save">
+        <a href="{% url 'app_coffee:account' %}" class="btn col-lg-2 bg-cancel">Cancel</a>
+    </div>
+</form>
+{% endblock %}

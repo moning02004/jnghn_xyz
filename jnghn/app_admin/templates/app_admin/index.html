@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block title %}<title>Admin</title>{% endblock %}
+
+{% block content %}
+<nav class="nav nav-tabs my-3">
+    <a class="nav-item nav-link active text-dark" href="#userlist" data-toggle="tab">User Management</a>
+    <a class="nav-item nav-link text-dark" href="#function" data-toggle="tab">Site Management</a>
+</nav>
+<div class="tab-content mb-5">
+    <div class="tab-pane fade show active" id="userlist">
+        <table class="table table-responsive-lg table-bordered table-striped table-sm table-hover">
+            <tr class="text-center">
+                <th>No.</th>
+                <th class="w-50">Username</th>
+                <th>Last Login</th>
+                <th>Permission</th>
+            </tr>
+            {% for user_ in user_list %}
+            <tr class="text-center">
+                <td>{{ forloop.counter }}</td>
+                <td><a href="{% url 'app_admin:detail' user_.username %}">{{ user_.username }}</a></td>
+                <td>{{ user_.last_login | date:"Y. m. d. H:i:s" }}</td>
+                {% if user_.is_staff %}
+                <td>Supervisor</td>
+                {% else %}
+                <td>Normal User</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="tab-pane fade" id="function">
+        <div class="form-group">
+            <span class="h5">Database</span>
+            <div class="d-flex flex-wrap">
+                <button class="btn flex-fill bg-cancel">Clear plan</button>
+                <button class="btn flex-fill">Clear plan</button>
+                <button class="btn flex-fill bg-cancel">Clear Archive</button>
+                <button class="btn flex-fill">Clear Coffee</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

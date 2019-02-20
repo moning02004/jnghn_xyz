@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block title %}<title>Review list</title>{% endblock %}
+
+{% block content %}
+<div class="d-flex large-view border-bottom my-1">
+    <span class="h2">Review list</span>
+</div>
+<div class="">
+    {% if not review_list %}
+    <p class="text-center m-3">The review does not exist.</p>
+    {% else %}
+    <table class="table table-striped table-bordered">
+        <tr class="text-center">
+            <th class="w-75">Title</th>
+            <th>Created</th>
+            <th>Views</th>
+        </tr>
+    {% for review in review_list %}
+        <tr class="text-center">
+            <td><a href="{% url 'app_review:detail' review.id %}">{{ review.title }}</a></td>
+            <td>{{ review.created | date:"Y. m. d. H:i"}}</td>
+            <td>{{ review.view}}</td>
+        </tr>
+    {% endfor %}
+    {% endif %}
+    </table>
+</div>
+{% endblock %}

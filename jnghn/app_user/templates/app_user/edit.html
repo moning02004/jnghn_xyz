@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+<title>Edit User</title>
+{% endblock %}
+
+{% block content %}
+<div class="large-view border rounded p-3 mt-5">
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="d-flex flex-nowrap form-group">
+            <div><input class="form-control text-center" value="Username" readonly></div>
+            <div class="flex-fill"><input class="form-control bg-white text-center" value="{{ user.username }}" readonly></div>
+        </div>
+
+        <div class="dropdown-divider"></div>
+        <p class="m-0">Edit . . .</p>
+        <div class="d-flex flex-nowrap form-group">
+            <div><input class="form-control text-center" value="Name" readonly></div>
+            <div class="flex-fill"><input class="form-control bg-white text-center" value="{{ user.first_name }}"></div>
+        </div>
+
+        <div class="d-flex flex-nowrap form-group">
+            <div><input class="form-control text-center" value="E-Mail" readonly></div>
+            <div class="flex-fill"><input class="form-control bg-white text-center" value="{{ user.email }}" readonly></div>
+        </div>
+
+        <div class="d-flex flex-nowrap form-group">
+            <div><input class="form-control text-center" value="Current Password" readonly></div>
+            <div class="flex-fill"><input class="form-control bg-white text-center" value=""></div>
+        </div>
+
+        <div class="form-group">
+            <div class="d-flex flex-nowrap">
+                <div><input class="form-control text-center" value="New Password" readonly></div>
+                <div class="input-group flex-fill">
+                    <input class="form-control password" type="password" name="password">
+                    <div class="input-group-append">
+                        <span class="input-group-text input-password"><i></i></span>
+                    </div>
+                </div>
+            </div>
+            <small class="text-danger password-message"></small>
+        </div>
+
+        <div class="form-group">
+            <div class="d-flex flex-nowrap">
+                <div><input class="form-control text-center" value="Confirm password" readonly></div>
+                <div class="input-group">
+                    <input class="form-control re-password" type="password" name="password">
+                    <div class="input-group-append">
+                        <span class="input-group-text input-re-password"><i></i></span>
+                    </div>
+                </div>
+            </div>
+            <span class="text-danger pl-1 re-password-message"></span>
+        </div>
+    </form>
+</div>
+<div class="d-flex mb-2">
+    <input type="submit" class="btn col-md-2 bg-save ml-auto" value="Save">
+    <a href="{% url 'app_user:profile' %}" class="btn col-md-2 bg-cancel">Cancel</a>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block title %}<title>Coffee Community</title>{% endblock %}
+
+{% block content %}
+<div class="d-flex large-view border-bottom my-1">
+    <span class="h2">Post List</span>
+    <a href="{% url 'app_coffee:community_new' %}" class="btn border ml-auto my-auto"><i class="fa fa-pen text-dark"></i></a>
+</div>
+{% if not post_list %}
+<p class="text-center">Post is not registered</p>
+{% else %}
+<table class="table table-striped table-bordered table-responsive-lg table-sm mb-5">
+    <tr class="text-center">
+        <th>No.</th>
+        <th class="w-50">Title</th>
+        <th>Author</th>
+        <th>Created</th>
+        <th>Views</th>
+    </tr>
+    {% for post in post_list %}
+    <tr class="text-center">
+        <td>{{ post.id }}</td>
+        <td><a href="{% url 'app_coffee:community_detail' post.id %}">{{ post.title }}</a></td>
+        <td>{{ post.author }}</td>
+        <td>{{ post.created | date:"Y. m. d. H:i" }}</td>
+        <td>{{ post.view }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+{% endblock %}

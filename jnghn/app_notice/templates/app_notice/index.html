@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+<title>Our Gallery</title>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex large-view border-bottom my-1">
+    <span class="h2">Notice</span>
+    {% if user.is_staff %}
+    <a href="{% url 'app_notice:new' %}" class="btn border my-auto ml-auto"><i class="fa fa-pen text-dark"></i></a>
+    {% endif %}
+</div>
+{% if not notice_list %}
+<p class="text-center m-3">The notice does not exist.</p>
+{% else %}
+{% for notice in notice_list %}
+<div class="d-flex form-group">
+    <div class="flex-shrink-1">
+        <input class="form-control text-center" value="{{ notice.author.first_name }}" readonly>
+    </div>
+    <div class="flex-grow-1">
+        <div class="input-group">
+            <input title="{{ notice.created | date:'y. m. d. H:i' }}" class="form-control bg-white text-center" value="{{ notice.content }}" readonly>
+            {% if notice.author.username == request.user.username or user.is_superuser %}
+            <div class="input-group-append">
+                <a class="btn border text-white bg-cancel" href="{% url 'app_notice:delete' notice.id %}"><i class="fa fa-times"></i></a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}

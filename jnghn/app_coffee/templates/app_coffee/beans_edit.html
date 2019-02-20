@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block title %}<title>{{ coffee.name }} : edit</title>{% endblock %}
+
+{% block content %}
+<div class="large-view my-4">
+    <span class="h2">Edit {{ coffee.name }}</span>
+</div>
+<form action="" method="post">
+    <div class="border rounded mb-3 p-3">
+        <div class="d-flex flex-wrap">
+            <div class="form-group">
+                <input class="form-control text-center" value="Nation" readonly>
+            </div>
+            <div class="form-group flex-fill">
+                <input type="text" name="nation" class="form-control" value="{{ beans.nation }}">
+            </div>
+        </div>
+
+        <div class="d-flex flex-wrap">
+            <div class="form-group">
+                <input class="form-control text-center" value="Beans name" readonly>
+            </div>
+            <div class="form-group flex-fill">
+                <input type="text" name="name" class="form-control" value="{{ beans.name }}">
+            </div>
+        </div>
+
+        <div class="d-flex flex-wrap">
+            <div class="form-group">
+                <input class="form-control text-center" value="description" readonly>
+            </div>
+            <div class="form-group flex-fill">
+                <input type="text" name="desc" class="form-control" value="{{ beans.content }}">
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-wrapform-group">
+        <input type="submit" class="btn col-lg-2 ml-auto bg-save" value="Save">
+        <a href="{% url 'app_coffee:beans' %}" class="btn col-lg-2 bg-cancel">Cancel</a>
+    </div>
+</form>
+{% endblock %}
