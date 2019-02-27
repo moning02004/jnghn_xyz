@@ -24,3 +24,7 @@ def search_view(request):
     review_list = Review.objects.all().filter(title=primary)
     archive_list = Archive.objects.all().filter(title=primary)
     return render(request, 'app_main/search.html', {'keyword': primary, 'plan': plan_list, 'review': review_list, 'archive': archive_list})
+
+
+def password_view(request):
+    return render(request, 'password.html')

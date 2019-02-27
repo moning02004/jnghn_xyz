@@ -74,11 +74,11 @@ def new_view(request, period):
             days = Days()
             days.plan = plan
             days.save()
-            for place, content in zip(request.POST.getlist('place'+str(i)), request.POST.getlist('content'+str(i))):
-                print(place)
+            for times, content in zip(request.POST.getlist('times'+str(i)), request.POST.getlist('content'+str(i))):
+                print(times)
                 detail = Detail()
                 detail.days = days
-                detail.place = place
+                detail.times = times
                 detail.content = content
                 detail.save()
         return redirect('app_plan:index')
@@ -92,23 +92,23 @@ def edit_view(request, pk):
         if request.method == "POST":
             plan.title = request.POST.get('title')
             plan.where = request.POST.get('where')
-            plan.when = request.POST.get('when')
+            plan.day_from = request.POST.get('day_from')
+            plan.day_to = request.POST.get('day_to')
             plan.save()
 
-            for detail, place, content in zip(plan.detail_set.all(), request.POST.getlist('e_place'), request.POST.getlist('e_content')):
-                detail.place = place
-                detail.content = content
-                detail.save()
-
-            for place, content in zip(request.POST.getlist('place'), request.POST.getlist('content')):
-                if place == "": continue
-                detail = Detail()
-                detail.plan = plan
-                detail.place = place
-                detail.content = content
-                detail.save()
+            for i in range(plan.period):
+                days = Days()
+                days.plan = plan
+                days.save()
+                for times, content in zip(request.POST.getlist('times' + str(i)), request.POST.getlist('content' + str(i))):
+                    if times == "" and content == "": continue
+                    detail = Detail()
+                    detail.days = days
+                    detail.times = times
+                    detail.content = content
+                    detail.save()
             return redirect('app_plan:index')
-        return render(request, 'app_plan/edit.html', {'plan': plan})
+        return render(request, 'app_plan/edit.html', {'plan': plan, 'period': range(plan.period)})
     except Plan.DoesNotExist:
         return render(request, 'error.html')
 
@@ -125,13 +125,12 @@ def delete(request, pk):
         return render(request, 'error.html')
 
 
-def delete_plan(request, pk, detail_id):
+def delete_detail(request, pk, day_id, detail_id):
     if not request.user.is_authenticated: return render(request, 'error.html')
     try:
-        detail = Plan.objects.get(pk=pk).detail_set.get(pk=detail_id)
+        detail = Days.objects.get(pk=day_id).detail_set.get(pk=detail_id)
         detail.delete()
-
-    except Plan.DoesNotExist or Detail.DoesNotExist:
+    except Days.DoesNotExist or Detail.DoesNotExist:
         return render(request, 'error.html')
     return redirect('app_plan:edit', pk)
 
@@ -145,3 +144,4 @@ def finish(request, pk):
     except Plan.DoesNotExist:
         return render(request, 'error.html')
     return redirect('app_plan:detail', pk)
+

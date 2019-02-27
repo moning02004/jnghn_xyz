@@ -24,7 +24,8 @@
                 <div class="flex-grow-1">
                     <input type="text" class="text-center form-control bg-white" value="{{ plan.day_from |date:'Y. m. d.'}}" readonly>
                 </div>
-                {% if plan.period > 2 %}
+                {% if plan.period > 1 %}
+                <span class="my-auto mx-1">~</span>
                 <div class="flex-grow-1">
                     <input type="text" class="text-center form-control bg-white" value="{{ plan.day_to |date:'Y. m. d.'}}" readonly>
                 </div>
@@ -46,8 +47,8 @@
                         <div class="input-group-append">
                             <form action="" method="post">
                                 {% csrf_token %}
-                                <button type="submit" class="btn" name="button" value="Finish">Yes</button>
-                                <button type="submit" class="btn" name="button" value="Not Finish">No</button>
+                                <button type="submit" class="btn button-f" name="button" value="Finish">Yes</button>
+                                <button type="submit" class="btn button-f" name="button" value="Not Finish">No</button>
                             </form>
                         </div>
                         {% endif %}
@@ -73,7 +74,7 @@
                 <span class="h6">day {{ forloop.counter }}</span>
                 {% for detail in days.detail_set.all %}
                 <div class="d-flex flex-wrap">
-                    <div><input class="form-control text-center" value="{{ detail.place }}" readonly></div>
+                    <div><input class="form-control text-center" value="{{ detail.times }}" readonly></div>
                     <div class="flex-grow-1">
                         <input readonly class="form-control bg-white text-center" type="text" value="{{ detail.content }}">
                     </div>
@@ -110,7 +111,7 @@
     <div class="ml-auto">
         {% if plan.author == user or user.is_authenticated %}
         {% if plan.finish == "No" %}
-        <a class="btn text-dark border m-1" href="{% url 'app_plan:edit' plan.id %}"><i class="fa fa-edit"></i></a>
+        <!--<a class="btn text-dark border m-1" href="{% url 'app_plan:edit' plan.id %}"><i class="fa fa-edit"></i></a>-->
         {% endif %}
         <a class="btn text-dark border m-1" href="{% url 'app_plan:delete' plan.id %}"><i class="fa fa-trash-alt"></i></a>
         {% endif %}

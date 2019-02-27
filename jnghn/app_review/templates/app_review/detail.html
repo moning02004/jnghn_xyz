@@ -1,4 +1,5 @@
 {% extends 'layout.html' %}
+{% load humanize %}
 
 {% block title %}
 <title>Review : {{ review.title }}</title>{% endblock %}
@@ -61,7 +62,7 @@
             {% for cost in review.cost_set.all %}
             <div class="d-flex flex-wrap">
                 <div class="flex-fill"><input class="form-control text-center cursor-default" value="{{cost.cost_content}}" readonly></div>
-                <div><input class="form-control text-center bg-white cursor-default" value="{{ cost.cost }}" readonly></div>
+                <div><input class="form-control text-center bg-white cursor-default" value="{{ cost.cost|intcomma }} 원" readonly></div>
             </div>
             {% endfor %}
         </div>

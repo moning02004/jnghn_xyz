@@ -12,8 +12,8 @@ table tr td {
     vertical-align: middle;
     white-space: nowrap;
 }
-.textarea-content {
-    height: 400px;
+.form-group textarea {
+    height: 200px;
 }
 .nav-nav li > .nav-link {
     font-size:1.2rem;

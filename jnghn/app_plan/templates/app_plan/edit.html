@@ -1,74 +1,87 @@
 {% extends 'layout.html' %}
 
-{% block title %}<title>Plan edit : {{ plan.title }}</title>{% endblock %}
+{% block title %}<title>Edit Plan : {{ plan.title }}</title>{% endblock %}
 
 {% block content %}
-<div class="large-view my-4 ">
-    <span class="h2">Edit plan</span>
-</div>
-<form action="" method="post" class="mb-5" onsubmit="return checkPassword();">
-    {% csrf_token %}
-    <div class="border p-3 form-group">
-        <div class="form-group mt-3">
-            <label class="form-control-label">Title</label>
-            <input class="form-control" type="text" name="title" value="{{ plan.title }}">
-        </div>
-        <div class="d-flex flex-wrap">
-            <div class="form-group flex-fill">
-                <label class="form-control-label">Date</label>
-                <input type="date" name="when" class="form-control" value="{{ plan.when|date:"Y-m-d" }}">
-            </div>
-            <div class="form-group flex-fill">
-                <label class="form-control-label">Location</label>
-                <input class="form-control" type="text" name="where" value="{{ plan.where }}">
-            </div>
-        </div>
-        <div class="dropdown-divider"></div>
-        <div class="dropdown-divider"></div>
+<nav class="nav nav-tabs my-1">
+    <a href="#outline" class="nav-item nav-link active" data-toggle="tab" role="tab" id="outline-nav">Outline</a>
 
-        {% for detail in plan.detail_set.all %}
-            <div class="d-flex flex-wrap">
+    <a href="#step" class="nav-item nav-link" data-toggle="tab"  role="tab" id="step-nav">Step</a>
+</nav>
+<form action="" method="post" class="mb-5" onsubmit="return newSubmit();">
+    {% csrf_token %}
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="outline">
+            <div class="border rounded p-3 form-group">
+                <div class="d-flex flex-wrap form-group">
+                    <input class="form-control text-center" value="Title" readonly>
+                    <div class="flex-grow-1">
+                        <input type="text" class="form-control text-center" name="title" placeholder="Title" value="{{ plan.title }}">
+                    </div>
+                </div>
+
                 <div class="form-group">
-                    <input class="form-control" type="text" name="e_place" value="{{ detail.place }}">
+                    <input class="form-control text-center" value="When" readonly>
+                    <div class="d-flex flex-wrap">
+                        <div class="flex-fill">
+                            <input type="date" class="form-control" name="day_from" value="{{ plan.day_from|date:'Y-m-d' }}">
+                        </div>
+                        {% if plan.period > 1 %}
+                        <div class="mx-1 my-auto">~</div>
+                        <div class="flex-fill">
+                            <input type="date" class="form-control bg-white" name="day_to" value="{{ plan.day_to|date:'Y-m-d' }}" readonly>
+                        </div>
+                        {% endif %}
+                    </div>
                 </div>
-                <div class="form-group flex-grow-1">
-                    <input class="form-control" type="text" name="e_content" value="{{ detail.content }}">
-                </div>
-            </div>
-        {% endfor %}
-        <div class="detail-field">
-            <div class="d-flex flex-wrap">
+
                 <div class="form-group">
-                    <input class="form-control" type="text" name="place">
-                </div>
-                <div class="form-group flex-grow-1">
-                    <input class="form-control" type="text" name="content">
+                    <input class="form-control text-center" value="Location" readonly>
+                    <div class="flex-fill">
+                        <input type="text" class="form-control text-center" name="where" placeholder="부산" value="{{ plan.where }}">
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="d-flex form-group flex-wrap">
-            <button type="button" class="btn ml-auto bg-plus col-lg-2 plan-button-p"><i class="fa fa-plus"></i></button>
-            <button type="button" class="btn bg-minus col-lg-2 plan-button-m"><i class="fa fa-minus"></i></button>
+        <div class="tab-pane fade" id="step">
+            <div id="contents">
+                {% for days in plan.days_set.all %}
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control text-center" value="Day {{ forloop.counter }}" readonly>
+                        <div class="input-group-append" id="{{ forloop.counter|add:-1}}">
+                            <button type="button" class="btn bg-plus px-4 button{{forloop.counter|add:-1}}-p"><i class="fa fa-plus"></i></button>
+                            <button type="button" class="btn bg-minus px-4 button{{forloop.counter|add:-1}}-m"><i class="fa fa-minus"></i></button>
+                        </div>
+                    </div>
+                    {% for detail in days.detail_set.all %}
+                    <div class="d-flex flex-wrap mt-1 input-group">
+                        <div><input class="form-control" type="text" name="times{{forloop.counter|add:-1}}" placeholder="Time" value="{{ detail.times }}"></div>
+                        <div class="flex-grow-1">
+                            <input class="form-control" type="text" name="content{{forloop.counter|add:-1}}" placeholder="Content" value="{{ detail.content }}">
+                        </div>
+                        <div class="input-group-append">
+                            <a href="{% url 'app_plan:delete_detail' plan.id days.id detail.id %}" class="btn bg-cancel button-d"><i class="fa fa-times"></i></a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="field{{forloop.counter|add:-1}}">
+                        <div class="d-flex flex-wrap mt-1">
+                            <div><input class="form-control" type="text" name="times{{forloop.counter|add:-1}}" placeholder="Time"></div>
+                            <div class="flex-grow-1">
+                                <input class="form-control" type="text" name="content{{forloop.counter|add:-1}}" placeholder="Content">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
         </div>
     </div>
-    <div class="d-flex flex-wrap form-group">
-        <a class="btn dropup ml-auto col-lg-2 password-save bg-password-save" data-toggle="dropdown">Password & Save</a>
-        <div class="dropdown-menu p-3">
-            <div class="border p-2 m-2">If you don't type the password,<br>it is the same as the "Save" button.</div>
-            <div class="form-group">
-                <label class="form-control-label">Password</label>
-                <input class="form-control" type="password" name="password1" placeholder="Password">
-            </div>
-            <div class="form-group">
-                <label class="form-control-label">re Password</label>
-                <input class="form-control" type="password" name="password2" placeholder="re Password">
-            </div>
-            <div class="text-right">
-                <input type="submit" class="btn bg-save" name="save" value="Password_Save">
-            </div>
-        </div>
-        <input type="submit" class="btn bg-save col-lg-2" name="save" value="Save">
-        <a href="{% url 'app_plan:index' %}" class="btn bg-cancel col-lg-2 text-white">Cancel</a>
+    <div class="d-flex flex-wrap form-group" style="margin-bottom: 30%;">
+        <a href="{% url 'app_plan:router' %}" class="btn bg-login col-lg-2 text-dark button-prev">Prev</a>
+        <input type="submit" class="btn bg-save col-lg-2 ml-auto" name="save" value="Save">
+        <a href="{% url 'app_plan:index' %}" class="btn bg-cancel col-lg-2 button-prev">Cancel</a>
     </div>
 </form>
 {% endblock %}

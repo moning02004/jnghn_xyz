@@ -24,17 +24,14 @@ class Plan(models.Model):
 class Days(models.Model):
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.plan.title
-
 
 class Detail(models.Model):
     days = models.ForeignKey(Days, on_delete=models.CASCADE)
-    place = models.CharField(max_length=100)
+    times = models.CharField(max_length=100)
     content = models.TextField()
 
     def __str__(self):
-        return self.place
+        return self.times
 
     
 class HeartPlan(models.Model):

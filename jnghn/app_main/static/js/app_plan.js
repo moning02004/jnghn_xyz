@@ -10,6 +10,12 @@ $(document).ready(function() {
             $('div').remove('.field > div:last');
         }
     });
+    $('.button-d').click(function() {
+        if (confirm("되돌릴 수 없는데 계속 할 거에요?")) {
+            return false;
+        }
+        return true;
+    });
     $('.button-cp').click(function() {
         $('.cost-field').append(cost_content);
     });
@@ -34,7 +40,7 @@ $(document).ready(function() {
     }
 
     $('.button-prev').click(function() {
-        if (confirm("계속하시겠습니까?")){
+        if (confirm("계속할거에요?")){
             return true;
         }
         return false;
@@ -42,7 +48,6 @@ $(document).ready(function() {
 
     $('input[name="day_from"]').change(function() {
         let day_to = new Date(new Date($('input[name="day_from"]').val()).getTime() + ($('#contents > div').length-1)*DAY);
-
         let month = day_to.getMonth() + 1;
         let day = day_to.getDate();
         if (month < 10) month = '0' + month
@@ -50,4 +55,18 @@ $(document).ready(function() {
 
         $('input[name="day_to"]').val(day_to.getFullYear() + "-" + month + "-" + day);
     });
+    $('.button-f').click(function() {
+
+    });
 });
+
+function newSubmit() {
+    if (confirm("저장할까요?")){
+        if ($('input[name="title"]').val() == "" || $('input[name="day_from"]').val() == "" || $('input[name="where"]').val() == "") {
+            alert("내용을 모두 입력하고 저장을 클릭하세요");
+            return false;
+        }
+        return true;
+    }
+    return false;
+}

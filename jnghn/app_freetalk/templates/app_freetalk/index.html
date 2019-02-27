@@ -7,11 +7,26 @@
     <span class="h2">Free Talk</span>
     <a href="{% url 'app_freetalk:new' %}" class="btn border my-auto ml-auto"><i class="fa fa-pen text-dark"></i></a>
 </div>
-{% if not treetalk_list %}
+{% if not freetalk_list %}
 <p class="text-center">Post is not existed</p>
 {% else %}
-<table class="table table-bordered table-striped">
-
+<table class="table table-bordered table-striped table-sm">
+    <tr class="text-center">
+        <th>No.</th>
+        <th style="width: 60%;">Title</th>
+        <th>Author</th>
+        <th>Created</th>
+        <th>View</th>
+    </tr>
+    {% for freetalk in freetalk_list %}
+    <tr class="text-center">
+        <td>{{ freetalk.id }}</td>
+        <td><a href="{% url 'app_freetalk:detail' freetalk.id %}">{{ freetalk.title }}</a></td>
+        <td>{{ freetalk.author }}</td>
+        <td>{{ freetalk.created|date:"Y. m. d. H:i" }}</td>
+        <td>{{ freetalk.view }}</td>
+    </tr>
+    {% endfor %}
 </table>
 {% endif %}
 {% endblock %}
