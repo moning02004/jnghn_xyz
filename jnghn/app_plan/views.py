@@ -25,13 +25,13 @@ def detail_view(request, pk):
                 except HeartPlan.DoesNotExist:
                     heart = HeartPlan()
                     heart.plan = plan
-                    heart.user = request.user
+                    heart.author = request.user
                     heart.save()
             # 댓글 입력할 경우
             elif request.POST.get('button') == "comment":
                 comment = CommentPlan()
                 comment.plan = plan
-                comment.user = request.user
+                comment.author = request.user
                 comment.content = request.POST.get('content')
                 comment.save()
             # 완료 버튼 클릭할 경우
@@ -74,11 +74,10 @@ def new_view(request, period):
             days = Days()
             days.plan = plan
             days.save()
-            for times, content in zip(request.POST.getlist('times'+str(i)), request.POST.getlist('content'+str(i))):
-                print(times)
+            for major, content in zip(request.POST.getlist('major'+str(i)), request.POST.getlist('content'+str(i))):
                 detail = Detail()
                 detail.days = days
-                detail.times = times
+                detail.major = major
                 detail.content = content
                 detail.save()
         return redirect('app_plan:index')
@@ -96,15 +95,16 @@ def edit_view(request, pk):
             plan.day_to = request.POST.get('day_to')
             plan.save()
 
+            Days.objects.all().filter(plan=plan).delete()
             for i in range(plan.period):
                 days = Days()
                 days.plan = plan
                 days.save()
-                for times, content in zip(request.POST.getlist('times' + str(i)), request.POST.getlist('content' + str(i))):
-                    if times == "" and content == "": continue
+                for major, content in zip(request.POST.getlist('major' + str(i)), request.POST.getlist('content' + str(i))):
+                    if major == "" and content == "": continue
                     detail = Detail()
                     detail.days = days
-                    detail.times = times
+                    detail.major = major
                     detail.content = content
                     detail.save()
             return redirect('app_plan:index')
@@ -128,7 +128,7 @@ def delete(request, pk):
 def delete_detail(request, pk, day_id, detail_id):
     if not request.user.is_authenticated: return render(request, 'error.html')
     try:
-        detail = Days.objects.get(pk=day_id).detail_set.get(pk=detail_id)
+        detail = Plan.objects.get(pk=pk).days_set.get(pk=day_id).detail_set.get(pk=detail_id)
         detail.delete()
     except Days.DoesNotExist or Detail.DoesNotExist:
         return render(request, 'error.html')

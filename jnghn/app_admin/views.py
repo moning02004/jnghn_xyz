@@ -50,33 +50,5 @@ def delete_user(request, username):
     return render(request, 'error.html')
 
 
-def delete_plan(request):
-    if request.user.is_staff:
-        for user in User.objects.all():
-            for plan in user.plan_set.all():
-                plan.delete()
-        return redirect('app_admin:index')
-    return render(request, 'error.html')
-
-
-def delete_gallery(request):
-    if request.user.is_staff:
-        for user in User.objects.all():
-            for gallery in user.gallery_set.all():
-                gallery.thumbnail.delete()
-                for img in gallery.image_set.all():
-                    img.file.delete()
-                gallery.delete()
-        return redirect('app_admin:index')
-    return render(request, 'error.html')
-
-
-def delete_archive(request):
-    if request.user.is_staff:
-        for user in User.objects.all():
-            for archive in user.archive_set.all():
-                for attach in archive.attachment_set.all():
-                    attach.file.delete()
-                archive.delete()
-        return redirect('app_admin:index')
-    return render(request, 'error.html')
+def edit_me_view(request):
+    return render(request, 'app_admin/edit_me.html')

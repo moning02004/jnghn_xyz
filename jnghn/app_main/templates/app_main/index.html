@@ -1,10 +1,21 @@
 {% extends 'layout.html' %}
+{% load staticfiles %}
 
 {% block title %}<title>Memories</title>{% endblock %}
 
 {% block picture %}
 <div style="height: 300px;" class="border bg-picture">
+        <div class="container row">
+            <div class="col-lg-6">
 
+            </div>
+            <div class="col-lg-6">
+                <div class="d-flex flex-wrap">
+                    <div class="flex-fill"><input class="form-control bg-white" value="이름" readonly></div>
+                    <div class="flex-fill"><input class="form-control bg-white" value="이름" readonly></div>
+                </div>
+            </div>
+    </div>
 </div>
 {% endblock %}
 

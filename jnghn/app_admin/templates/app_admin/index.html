@@ -6,6 +6,7 @@
 <nav class="nav nav-tabs my-3">
     <a class="nav-item nav-link active text-dark" href="#userlist" data-toggle="tab">User Management</a>
     <a class="nav-item nav-link text-dark" href="#function" data-toggle="tab">Site Management</a>
+    <a class="nav-item nav-link text-dark" href="#me" data-toggle="tab">About Me</a>
 </nav>
 <div class="tab-content mb-5">
     <div class="tab-pane fade show active" id="userlist">
@@ -40,6 +41,9 @@
                 <button class="btn flex-fill">Clear Coffee</button>
             </div>
         </div>
+    </div>
+    <div class="tab-pane fade" id="me">
+        <a href="{% url 'app_admin:edit_me' %}" class="btn">Edit Jeonghoon</a>
     </div>
 </div>
 {% endblock %}

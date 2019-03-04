@@ -3,17 +3,15 @@
 {% block title %}<title>Review : {{ plan.title }}</title>{% endblock %}
 
 {% block content %}
-<div class="large-view my-4">
-    <span class="h2">Writing Review : </span><span class="h5">{{ plan.title }}</span>
+<div class="large-view my-2">
+    <span class="h2">New : </span><span class="h5">{{ plan.title }}</span>
 </div>
-<form action="" method="post" enctype="multipart/form-data">
+<form action="" method="post" enctype="multipart/form-data" class="mb-5">
     {% csrf_token %}
     <div class="border rounded p-3">
         <div class="d-flex flex-wrap form-group">
-            <div><input type="text" class="form-control text-center" name="title" value="Title" readonly></div>
-            <div class="flex-grow-1">
-                <input type="text" class="form-control" name="title">
-            </div>
+            <input type="text" class="form-control text-center" name="title" value="제목" readonly>
+            <input type="text" class="form-control" name="title" placeholder="제목">
         </div>
 
         <div class="form-group">

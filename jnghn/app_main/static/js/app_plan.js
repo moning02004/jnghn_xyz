@@ -11,7 +11,7 @@ $(document).ready(function() {
         }
     });
     $('.button-d').click(function() {
-        if (confirm("되돌릴 수 없는데 계속 할 거에요?")) {
+        if (!confirm("되돌릴 수 없는데 계속 할 거에요?")) {
             return false;
         }
         return true;
@@ -33,7 +33,6 @@ $(document).ready(function() {
         });
         $('.button'+i+'-m').click(function() {
             if ($('.field'+$(this).parent().attr('id')+ ' > div').length > 1) {
-                console.log($(this).parent().attr('id'));
                 $('div').remove('.field'+$(this).parent().attr('id')+' > div:last');
             }
         });
@@ -55,8 +54,15 @@ $(document).ready(function() {
 
         $('input[name="day_to"]').val(day_to.getFullYear() + "-" + month + "-" + day);
     });
-    $('.button-f').click(function() {
 
+    $('.button-f').click(function() {
+        var alphabet = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ0123456789';
+        var correct = [];
+        for (var i = 0; i<5; i++) correct.push(alphabet[Math.floor(Math.random()*alphabet.length)]);
+
+        answer = prompt("다음 문자를 입력하시오\n"+ correct.join(""));
+        if (answer == correct.join("")) return true;
+        return false;
     });
 });
 

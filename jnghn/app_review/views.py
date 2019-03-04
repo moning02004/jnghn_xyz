@@ -17,7 +17,7 @@ def detail_view(request, review_id):
         if request.method == "POST":
             if request.POST.get('button') == "heart":
                 try:
-                    heart = HeartReview.objects.get(user=request.user, review=review)
+                    heart = HeartReview.objects.get(author=request.user, review=review)
                     heart.delete()
                 except HeartReview.DoesNotExist:
                     heart = HeartReview()

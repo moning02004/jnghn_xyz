@@ -49,27 +49,27 @@
                 <div class="form-group">
                     <div class="input-group">
                         <input class="form-control text-center" value="Day {{ forloop.counter }}" readonly>
-                        <div class="input-group-append" id="{{ forloop.counter|add:-1}}">
-                            <button type="button" class="btn bg-plus px-4 button{{forloop.counter|add:-1}}-p"><i class="fa fa-plus"></i></button>
-                            <button type="button" class="btn bg-minus px-4 button{{forloop.counter|add:-1}}-m"><i class="fa fa-minus"></i></button>
+                        <div class="input-group-append" id="{{ forloop.counter0 }}">
+                            <button type="button" class="btn bg-plus px-4 button{{forloop.counter0 }}-p"><i class="fa fa-plus"></i></button>
+                            <button type="button" class="btn bg-minus px-4 button{{forloop.counter0 }}-m"><i class="fa fa-minus"></i></button>
                         </div>
                     </div>
                     {% for detail in days.detail_set.all %}
                     <div class="d-flex flex-wrap mt-1 input-group">
-                        <div><input class="form-control" type="text" name="times{{forloop.counter|add:-1}}" placeholder="Time" value="{{ detail.times }}"></div>
+                        <div><input class="form-control" type="text" name="times{{ forloop.parentloop.counter0 }}" placeholder="Time" value="{{ detail.times }}"></div>
                         <div class="flex-grow-1">
-                            <input class="form-control" type="text" name="content{{forloop.counter|add:-1}}" placeholder="Content" value="{{ detail.content }}">
+                            <input class="form-control" type="text" name="content{{ forloop.parentloop.counter0 }}" placeholder="Content" value="{{ detail.content }}">
                         </div>
                         <div class="input-group-append">
                             <a href="{% url 'app_plan:delete_detail' plan.id days.id detail.id %}" class="btn bg-cancel button-d"><i class="fa fa-times"></i></a>
                         </div>
                     </div>
                     {% endfor %}
-                    <div class="field{{forloop.counter|add:-1}}">
+                    <div class="field{{ forloop.counter0 }}">
                         <div class="d-flex flex-wrap mt-1">
-                            <div><input class="form-control" type="text" name="times{{forloop.counter|add:-1}}" placeholder="Time"></div>
+                            <div><input class="form-control" type="text" name="major{{ forloop.counter0 }}" placeholder="Time"></div>
                             <div class="flex-grow-1">
-                                <input class="form-control" type="text" name="content{{forloop.counter|add:-1}}" placeholder="Content">
+                                <input class="form-control" type="text" name="content{{ forloop.counter0 }}" placeholder="Content">
                             </div>
                         </div>
                     </div>

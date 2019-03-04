@@ -4,7 +4,7 @@ from django.db import models
 
 
 def file_path(instance, filename):
-    return '{0}/{2}/Admin/{1}'.format(instance.archive.author.username, filename, date.today())
+    return 'me/{1}/Admin/{0}'.format(filename, date.today())
 
 
 class Me(models.Model):
@@ -18,17 +18,39 @@ class Me(models.Model):
         return self.name
 
 
+class School(models.Model):
+    me = models.ForeignKey(Me, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    period_from = models.DateField()
+    period_to = models.DateField()
+    graduate = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+
+class Army(models.Model):
+    me = models.ForeignKey(Me, on_delete=models.CASCADE)
+    graduate = models.TextField()
+    period_from = models.DateField()
+    period_to = models.DateField()
+    position = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.graduate
+
+
 class Experience(models.Model):
     me = models.ForeignKey(Me, on_delete=models.CASCADE)
-    category = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
     content = models.TextField()
 
     def __str__(self):
-        return self.category
+        return self.title
 
 
 class Attachment(models.Model):
-    archive = models.ForeignKey(Me, on_delete=models.CASCADE)
+    me = models.ForeignKey(Me, on_delete=models.CASCADE)
     file = models.FileField(upload_to=file_path, null=True, blank=True)
 
     def delete(self, *args, **kwargs):

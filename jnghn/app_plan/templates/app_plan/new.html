@@ -4,8 +4,8 @@
 
 {% block content %}
 <nav class="nav nav-tabs my-1">
-    <a href="#outline" class="nav-item nav-link active" data-toggle="tab" role="tab" id="outline-nav">Outline</a>
-    <a href="#step" class="nav-item nav-link" data-toggle="tab"  role="tab" id="step-nav">Step</a>
+    <a href="#outline" class="nav-item nav-link active" data-toggle="tab" role="tab">개요</a>
+    <a href="#step" class="nav-item nav-link" data-toggle="tab"  role="tab">내용</a>
 </nav>
 <form action="" method="post" class="mb-5" onsubmit="return newSubmit();">
     {% csrf_token %}
@@ -13,14 +13,14 @@
         <div class="tab-pane fade show active" id="outline">
             <div class="border rounded p-3 form-group">
                 <div class="d-flex flex-wrap form-group">
-                    <input class="form-control text-center" value="Title" readonly>
+                    <input class="form-control text-center" value="제목" readonly>
                     <div class="flex-grow-1">
-                        <input type="text" class="form-control" name="title" placeholder="Title">
+                        <input type="text" class="form-control" name="title" placeholder="제목">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <input class="form-control text-center" value="When" readonly>
+                    <input class="form-control text-center" value="날짜" readonly>
                     <div class="d-flex flex-wrap">
                         <div class="flex-fill">
                             <input type="date" class="form-control" name="day_from">
@@ -35,9 +35,9 @@
                 </div>
 
                 <div class="form-group">
-                    <input class="form-control text-center" value="Location" readonly>
+                    <input class="form-control text-center" value="지역" readonly>
                     <div class="flex-fill">
-                        <input type="text" class="form-control text-center" name="where" placeholder="부산, 대구 ...">
+                        <input type="text" class="form-control" name="where" placeholder="지역">
                     </div>
                 </div>
             </div>
@@ -55,9 +55,9 @@
                     </div>
                     <div class="field{{i}}">
                         <div class="d-flex flex-wrap mt-1">
-                            <div><input class="form-control" type="text" name="times{{i}}" placeholder="Time"></div>
+                            <div><input class="form-control" type="text" name="major{{i}}" placeholder="주요 내용"></div>
                             <div class="flex-grow-1">
-                                <input class="form-control" type="text" name="content{{i}}" placeholder="Content">
+                                <input class="form-control" type="text" name="content{{i}}" placeholder="부가 설명">
                             </div>
                         </div>
                     </div>

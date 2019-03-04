@@ -25,7 +25,7 @@
     <td>{{ plan.finish }}</td>
     <td><a href="{% url 'app_plan:detail' plan.id %}">{{ plan.title }}</a></td>
     <td>{{ plan.author }}</td>
-    <td>{{ plan.created | date:"Y. m. d H:i" }}</td>
+    <td>{{ plan.created | date:"Y. m. d. H:i" }}</td>
     <td>{{ plan.view }}</td>
   </tr>
   {% endfor %}
