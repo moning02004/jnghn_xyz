@@ -12,17 +12,18 @@ def index_view(request):
 def detail_view(request, archive_id):
     try:
         archive = Archive.objects.get(pk=archive_id)
+        active = ['active', '']
         if request.method == "POST":
             comment = CommentArchive()
             comment.archive = archive
             comment.author = request.user
             comment.content = request.POST.get('comment')
             comment.save()
-
+            active = ['', 'active']
         else:
             archive.view += 1
             archive.save()
-        return render(request, 'app_archive/detail.html', {'archive': archive})
+        return render(request, 'app_archive/detail.html', {'archive': archive, 'content': active[0], 'comment': active[1]})
     except Archive.DoesNotExist:
         return render(request, 'error.html')
 

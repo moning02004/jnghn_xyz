@@ -13,13 +13,13 @@
 <div class="tab-content">
     <div class="tab-pane fade show active" id="outline" role="tabpanel" aria-labelledby="outline-tab">
         <div class="border rounded p-3">
-            <div class="d-flex flex-wrap form-group">
+            <div class="d-flex flex-wrap mb-1">
                 <div><input type="text" class="text-center form-control" value="Title" readonly></div>
                 <div class="flex-grow-1">
                     <input type="text" class="text-center form-control bg-white" value="{{ plan.title }}" readonly>
                 </div>
             </div>
-            <div class="d-flex flex-wrap form-group">
+            <div class="d-flex flex-wrap mb-1">
                 <div><input type="text" class="text-center form-control" value="When" readonly></div>
                 <div class="flex-grow-1">
                     <input type="text" class="text-center form-control bg-white" value="{{ plan.day_from |date:'Y. m. d.'}}" readonly>
@@ -31,14 +31,14 @@
                 </div>
                 {% endif %}
             </div>
-            <div class="d-flex flex-wrap form-group">
+            <div class="d-flex flex-wrap mb-1">
                 <div><input type="text" class="text-center form-control" value="Where" readonly></div>
                 <div class="flex-grow-1">
                     <input type="text" class="text-center form-control bg-white" value="{{ plan.where }}" readonly>
                 </div>
             </div>
 
-            <div class="d-flex flex-wrap form-group">
+            <div class="d-flex flex-wrap mb-1">
                 <div><input type="text" class="text-center form-control" value="Do" readonly></div>
                 <div class="flex-grow-1">
                     <div class="input-group">
@@ -66,29 +66,40 @@
             </div>
             <form action="" method="post">
                 {% csrf_token %}
-                <button type="submit" class="btn" name="button" value="heart"><i class="fa fa-heart" style="color: {{ color }};"></i> {{ plan.heartplan_set.all | length }}</button>
+                <button type="submit" class="btn" name="button" value="heart">
+                    <i class="fa fa-heart" style="color: {{ color }};"></i> {{ plan.heartplan_set.all | length }}
+                </button>
             </form>
         </div>
     </div>
     <div class="tab-pane fade" id="detail" role="tabpanel" aria-labelledby="detail-tab">
         <div class="border rounded p-3">
+            <div class="d-flex form-group">
+                <div><input class="form-control text-center" value="When" readonly></div>
+                <select class="form-control day-select">
+                    {% for days in plan.days_set.all %}
+                    <option value="{{ forloop.counter }}">day {{ forloop.counter }}</option>
+                    {% endfor %}
+                </select>
+            </div>
             {% for days in plan.days_set.all %}
-            <div class="form-group">
-                <span class="h6">day {{ forloop.counter }}</span>
-                {% for detail in days.detail_set.all %}
-                <div class="d-flex flex-wrap">
-                    <div><input class="form-control text-center" value="{{ detail.major }}" readonly></div>
-                    <div class="flex-grow-1">
-                        <input readonly class="form-control bg-white text-center" type="text" value="{{ detail.content }}">
+            <div class="form-group day-content">
+                <div class="hiddena" id="{{ forloop.counter }}">
+                    {% for detail in days.detail_set.all %}
+                    <div class="d-flex flex-wrap mb-1">
+                        <div><input class="form-control text-center" value="{{ detail.major }}" readonly></div>
+                        <div class="flex-grow-1">
+                            <input readonly class="form-control bg-white text-center" type="text" value="{{ detail.content }}">
+                        </div>
                     </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
             {% endfor %}
         </div>
     </div>
 
-    <div class="tab-pane fade" id="comment">
+    <div class="tab-pane fade show {{ comment }}" id="comment">
         <div class="border rounded p-3">
             {% for comment in plan.commentplan_set.all %}
             <div class="d-flex mb-3">

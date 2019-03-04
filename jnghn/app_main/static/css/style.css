@@ -8,6 +8,11 @@
 .bg-password-save { background-color: rgba(60, 60, 20, 0.2);}
 .bg-save { background-color: rgba(110, 100, 20, 0.2);}
 
+select, option{
+    text-align-last:center;
+    padding-right: 29px;
+}
+
 table tr td {
     vertical-align: middle;
     white-space: nowrap;

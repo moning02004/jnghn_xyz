@@ -30,7 +30,7 @@ class Image(models.Model):
 
     def delete(self, *args, **kwargs):
         self.image_file.delete()
-        super(Content, self).delete()
+        super(Image, self).delete()
 
     def filename(self):
         return os.path.basename(self.image_file.name)

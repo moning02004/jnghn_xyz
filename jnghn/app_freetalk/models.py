@@ -11,3 +11,13 @@ class FreeTalk(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class CommentFree(models.Model):
+    freetalk = models.ForeignKey(FreeTalk, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.content

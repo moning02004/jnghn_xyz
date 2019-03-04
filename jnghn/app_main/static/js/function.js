@@ -10,6 +10,14 @@ $('document').ready(function() {
             $('.search-content').addClass('hiddena');
         }
     });
+
+    $('.day-content').find("#"+$('.day-select option:selected').val()).removeClass('hiddena');
+    $('.day-select').change(function() {
+        console.log($('.day-select option:selected').val());
+        console.log($('.day-content').children().parent().html());
+        $('.day-content').children().addClass('hiddena');
+        $('.day-content').find("#"+$('.day-select option:selected').val()).removeClass('hiddena');
+    });
 });
 
 function newWindow(fileUrl){

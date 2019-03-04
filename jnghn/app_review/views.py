@@ -14,6 +14,7 @@ def index_view(request):
 def detail_view(request, review_id):
     try:
         review = Review.objects.get(pk=review_id)
+        active = ''
         if request.method == "POST":
             if request.POST.get('button') == "heart":
                 try:
@@ -30,12 +31,13 @@ def detail_view(request, review_id):
                 comment.author = request.user
                 comment.content = request.POST.get('comment_text')
                 comment.save()
-
+                active = 'active'
         else:
             review.view += 1
             review.save()
-        color = "red" if request.user.is_authenticated and HeartReview.objects.filter(author=request.user, review=review).exists() else "white"
-        return render(request, 'app_review/detail.html', {'review': review, 'color': color})
+
+        color = "red" if request.user.is_authenticated and HeartReview.objects.filter(review=review, author=request.user).exists() else "white"
+        return render(request, 'app_review/detail.html', {'review': review, 'color': color, 'comment': active})
     except Review.DoesNotExist:
         return render(request, 'error.html')
 

@@ -68,7 +68,7 @@
         </div>
     </div>
 
-    <div class="tab-pane fade" id="comment">
+    <div class="tab-pane fade show {{ comment }}" id="comment">
         <div class="border rounded p-3">
             {% for comment in review.commentreview_set.all %}
             <div class="d-flex mb-3">

@@ -15,12 +15,12 @@ def index_view(request):
 def detail_view(request, pk):
     try:
         plan = Plan.objects.get(pk=pk)
-
+        active = ''
         if request.method == "POST":
             # 하트를 클릭할 경우
             if request.POST.get('button') == "heart":
                 try:
-                    heart = HeartPlan.objects.get(plan=plan, user=request.user)
+                    heart = HeartPlan.objects.get(plan=plan, author=request.user)
                     heart.delete()
                 except HeartPlan.DoesNotExist:
                     heart = HeartPlan()
@@ -34,6 +34,7 @@ def detail_view(request, pk):
                 comment.author = request.user
                 comment.content = request.POST.get('content')
                 comment.save()
+                active = 'active'
             # 완료 버튼 클릭할 경우
             elif request.POST.get('button') == "Finish":
                 plan.finish = "Yes"
@@ -46,8 +47,8 @@ def detail_view(request, pk):
             plan.view += 1
             plan.save()
         
-        color = "red" if request.user.is_authenticated and HeartPlan.objects.filter(plan=plan, user=request.user).exists() else "white"
-        return render(request, 'app_plan/detail.html', {'plan': plan, 'color': color})
+        color = "red" if request.user.is_authenticated and HeartPlan.objects.filter(plan=plan, author=request.user).exists() else "white"
+        return render(request, 'app_plan/detail.html', {'plan': plan, 'color': color, 'comment': active})
     except Plan.DoesNotExist:
         return render(request, 'error.html')
 

@@ -5,12 +5,14 @@
 {% block content %}
 <div class="d-flex large-view border-bottom my-1">
     <span class="h2">Free Talk</span>
+    {% if user.is_authenticated %}
     <a href="{% url 'app_freetalk:new' %}" class="btn border my-auto ml-auto"><i class="fa fa-pen text-dark"></i></a>
+    {% endif %}
 </div>
 {% if not freetalk_list %}
 <p class="text-center">Post is not existed</p>
 {% else %}
-<table class="table table-bordered table-striped table-sm">
+<table class="table table-responsive-md table-bordered table-striped table-sm">
     <tr class="text-center">
         <th>No.</th>
         <th style="width: 60%;">Title</th>

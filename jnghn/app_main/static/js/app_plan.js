@@ -56,7 +56,7 @@ $(document).ready(function() {
     });
 
     $('.button-f').click(function() {
-        var alphabet = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ0123456789';
+        var alphabet = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789';
         var correct = [];
         for (var i = 0; i<5; i++) correct.push(alphabet[Math.floor(Math.random()*alphabet.length)]);
 

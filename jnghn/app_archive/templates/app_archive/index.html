@@ -12,15 +12,17 @@
 {% if not archive_list %}
 <p class="text-center">The archive does not exist.</p>
 {% else %}
-<table class="table table-responsive-md table-bordered table-striped">
+<table class="table table-responsive-md table-bordered table-striped table-sm">
     <tr class="text-center">
-        <th class="w-50">Title</th>
+        <th>No.</th>
+        <th style="width: 60%;">Title</th>
         <th>Author</th>
         <th>Created</th>
-        <th style="width:10%;">Views</th>
+        <th>View</th>
     </tr>
     {% for archive in archive_list %}
     <tr class="text-center">
+        <td>{{ archive.id }}</td>
         <td><a href="{% url 'app_archive:detail' archive.id %}">{{ archive.title }}</a></td>
         <td>{{ archive.author }}</td>
         <td>{{ archive.created | date:"Y. m. d. H:i" }}</td>
