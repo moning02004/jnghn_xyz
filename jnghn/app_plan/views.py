@@ -7,7 +7,9 @@ from .models import Plan, Detail, HeartPlan, CommentPlan, Days
 
 
 def index_view(request):
-    if not request.user.is_authenticated: return render(request, 'error.html')
+    if not request.user.is_authenticated:
+        request.session['last'] = 'app_plan:index'
+        return render(request, 'error.html')
     plan_list = Plan.objects.all().filter(author=request.user).order_by('created').reverse()
     return render(request, 'app_plan/index.html', {'plan_list': plan_list})
 
@@ -15,7 +17,7 @@ def index_view(request):
 def detail_view(request, pk):
     try:
         plan = Plan.objects.get(pk=pk)
-        active = ''
+        active = ['active', '']
         if request.method == "POST":
             # 하트를 클릭할 경우
             if request.POST.get('button') == "heart":
@@ -34,7 +36,7 @@ def detail_view(request, pk):
                 comment.author = request.user
                 comment.content = request.POST.get('content')
                 comment.save()
-                active = 'active'
+                active = ['', 'active']
             # 완료 버튼 클릭할 경우
             elif request.POST.get('button') == "Finish":
                 plan.finish = "Yes"
@@ -48,19 +50,26 @@ def detail_view(request, pk):
             plan.save()
         
         color = "red" if request.user.is_authenticated and HeartPlan.objects.filter(plan=plan, author=request.user).exists() else "white"
-        return render(request, 'app_plan/detail.html', {'plan': plan, 'color': color, 'comment': active})
+        print(plan.days_set.all())
+        print(plan.days_set.all()[0].detail_set.all())
+        return render(request, 'app_plan/detail.html', {'plan': plan, 'color': color, 'content': active[0],'comment': active[1]})
     except Plan.DoesNotExist:
         return render(request, 'error.html')
 
 
 def router_view(request):
+    if not request.user.is_authenticated:
+        request.session['last'] = 'app_plan:router'
+        return render(request, 'error.html')
     if request.method == "POST":
         return redirect('app_plan:new', request.POST.get('period'))
     return render(request, 'app_plan/router.html')
 
 
 def new_view(request, period):
-    if not request.user.is_authenticated: return render(request, 'error.html')
+    if not request.user.is_authenticated:
+        request.session['last'] = 'app_plan:new'
+        return render(request, 'error.html')
     if request.method == "POST":
         plan = Plan()
         plan.author = request.user
@@ -76,17 +85,21 @@ def new_view(request, period):
             days.plan = plan
             days.save()
             for major, content in zip(request.POST.getlist('major'+str(i)), request.POST.getlist('content'+str(i))):
+                print(major+", "+content)
                 detail = Detail()
                 detail.days = days
                 detail.major = major
                 detail.content = content
                 detail.save()
+        print(plan.days_set.all()[0].detail_set.all())
         return redirect('app_plan:index')
     return render(request, 'app_plan/new.html', {'period': range(period)})
 
 
 def edit_view(request, pk):
-    if not request.user.is_authenticated: return render(request, 'error.html')
+    if not request.user.is_authenticated:
+        request.session['last'] = 'app_plan:edit'
+        return render(request, 'error.html')
     try:
         plan = Plan.objects.get(pk=pk)
         if request.method == "POST":
@@ -115,7 +128,9 @@ def edit_view(request, pk):
 
 
 def delete(request, pk):
-    if not request.user.is_authenticated: return render(request, 'error.html')
+    if not request.user.is_authenticated:
+        request.session['last'] = 'app_plan":delete'
+        return render(request, 'error.html')
     try:
         plan = Plan.objects.get(pk=pk)
         if plan.author.username == request.user.username or \
@@ -127,7 +142,9 @@ def delete(request, pk):
 
 
 def delete_detail(request, pk, day_id, detail_id):
-    if not request.user.is_authenticated: return render(request, 'error.html')
+    if not request.user.is_authenticated:
+        request.session['last'] = 'app_plan:delete_detail'
+        return render(request, 'error.html')
     try:
         detail = Plan.objects.get(pk=pk).days_set.get(pk=day_id).detail_set.get(pk=detail_id)
         detail.delete()
@@ -137,7 +154,9 @@ def delete_detail(request, pk, day_id, detail_id):
 
 
 def finish(request, pk):
-    if not request.user.is_authenticated: return render(request, 'error.html')
+    if not request.user.is_authenticated:
+        request.session['last'] = 'app_plan:finish'
+        return render(request, 'error.html')
     try:
         plan = Plan.objects.get(pk=pk)
         plan.complete = "Yes"

@@ -40,6 +40,6 @@ def delete(request, pk):
     if request.user.is_superuser: return render(request, 'error.html')
     try:
         FreeTalk.objects.get(pk= pk).delete()
+        return redirect('app_freetalk:index')
     except FreeTalk.DoesNotExist:
         return render(request, 'error.html')
-    return redirect('app_freetalk:index')

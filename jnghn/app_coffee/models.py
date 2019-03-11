@@ -29,14 +29,14 @@ class Community(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     content = models.TextField(max_length=500)
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now=True)
     view = models.PositiveIntegerField(default=0)
     def __str__(self):
         return self.author
 
 
-class CommunityComment(models.Model):
+class CommentCommunity(models.Model):
     community = models.ForeignKey(Community, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.CharField(max_length=500)
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now=True)

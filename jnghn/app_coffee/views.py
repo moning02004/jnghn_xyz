@@ -1,7 +1,8 @@
+from django.db.models import Sum
 from django.shortcuts import render, redirect
 from datetime import datetime
 
-from .models import Account, Beans, Community, CommunityComment
+from .models import Account, Beans, Community, CommentCommunity
 
 
 def beans_index(request):
@@ -22,6 +23,20 @@ def beans_new(request):
 
 
 def beans_edit(request, pk):
+    try:
+        beans = Beans.objects.get(pk=pk)
+        if request.method == "POST":
+            beans.nation = request.POST.get('nation')
+            beans.name = request.POST.get('name')
+            beans.content = request.POST.get('desc')
+            beans.save()
+            return redirect('app_coffee:beans')
+        return render(request, 'app_coffee/beans_edit.html', {'beans': beans})
+    except:
+        return render(request, 'error.html')
+
+
+def beans_delete(request, pk):
     try:
         beans = Beans.objects.get(pk=pk)
         if request.method == "POST":
@@ -70,24 +85,27 @@ def community_edit(request, pk):
 def community_detail(request, pk):
     try:
         post = Community.objects.get(pk=pk)
-        comment_position = ''
-        detail_position = 'show active'
+        active = ['active', '']
         if request.method == "POST":
             if request.POST.get('button') == "comment":
-                comment = CommunityComment()
+                comment = CommentCommunity()
                 comment.community = post
                 comment.author = request.user
                 comment.content = request.POST.get('content')
                 comment.save()
-                comment_position = 'show active'
-                detail_position = ""
+                active = ['', 'active']
         else:
             post.view += 1
             post.save()
-        return render(request, 'app_coffee/community_detail.html', {'post': post,
-                                                                    'comment_position': comment_position,
-                                                                    'detail_position':detail_position
-                                                                    })
+        return render(request, 'app_coffee/community_detail.html', {'post': post, 'content': active[0], 'comment':active[1]})
+    except Community.DoesNotExist:
+        return render(request, 'error.html')
+
+
+def community_delete(request, pk):
+    try:
+        Community.objects.get(pk=pk)
+        return redirect('app_coffee:community')
     except Community.DoesNotExist:
         return render(request, 'error.html')
 
@@ -95,7 +113,14 @@ def community_detail(request, pk):
 def account_index(request):
     if not request.user.is_authenticated: return render(request, 'error.html')
     account_list = Account.objects.all().filter(author=request.user)
-    return render(request, 'app_coffee/account_index.html', {'account_list': account_list})
+    context = {
+        'account_list': account_list,
+        'item': str(account_list[0]) + ' and ' + str(len(account_list)-1) + ' others',
+        'item_date': str(account_list[0].begin_date) + ' ~ ' + str(account_list.last().begin_date),
+        'all_amount': str(account_list.aggregate(amount=Sum('amount')).get('amount')),
+        'all_price': str(account_list.aggregate(price=Sum('price')).get('price'))
+    }
+    return render(request, 'app_coffee/account_index.html', context)
 
 
 def account_new(request):
@@ -114,6 +139,19 @@ def account_new(request):
 
 
 def account_renew(request, pk):
+    try:
+        account = Account.objects.get(pk=pk)
+        if not request.user.is_authenticated and account.author != request.user: return render(request, 'error.html')
+        account.end_date = datetime.now().date()
+        account.period = (account.end_date - account.begin_date).days
+        print(account.period)
+        account.save()
+        return redirect('app_coffee:account')
+    except:
+        return render(request, 'error.html')
+
+
+def account_delete(request, pk):
     account = Account.objects.get(pk=pk)
     if not request.user.is_authenticated and account.author != request.user: return render(request, 'error.html')
     account.end_date = datetime.now().date()

@@ -6,12 +6,6 @@ from app_notice.models import Notice
 from app_plan.models import Plan, HeartPlan
 from app_archive.models import Archive
 
-
-def index_view(request):
-    notices = Notice.objects.order_by('-created')[:5]
-    return render(request, 'app_main/index.html', {'notices': notices})
-
-
 def login_view(request):
     if request.user.is_authenticated: return render(request, 'error.html')
     if request.method == "POST":
@@ -19,7 +13,11 @@ def login_view(request):
             user = User.objects.get(username=request.POST.get('username'))
             if user.check_password(request.POST.get('password')):
                 auth.login(request, user)
-                return redirect('app_user:index')
+                if request.session.get('last'):
+                    last = request.session['last']
+                    del request.session['last']
+                    return redirect(str(last) + ':index')
+                return redirect('app_main:index')
         except User.DoesNotExist:
             pass
         return render(request, 'app_user/login.html', {'message': "Username or Password is not correct"})
@@ -57,7 +55,7 @@ def leave(request, username):
     if not request.user.is_authenticated: return render(request, 'error.html')
     if username == request.user.username:
         user = User.objects.get(username=username).delete()
-        return redirect('app_user:index')
+        return redirect('app_main:index')
     return render(request, 'error.html')
 
 

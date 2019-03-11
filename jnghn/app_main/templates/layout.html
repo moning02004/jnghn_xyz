@@ -16,7 +16,15 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle font-weight-bold px-3" data-toggle="dropdown" href="#" role="button">Coffee Board</a>
+                <a class="nav-link dropdown-toggle font-weight-bold px-3" data-toggle="dropdown" href="#" role="button">Coffee</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item nav-link pl-3" href="{% url 'app_coffee:beans' %}">Coffee Bean</a>
+                    <a class="dropdown-item nav-link pl-3" href="{% url 'app_coffee:community' %}">Community</a>
+                    <a class="dropdown-item nav-link pl-3" href="{% url 'app_coffee:account' %}">Account Book</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle font-weight-bold px-3" data-toggle="dropdown" href="#" role="button">Util</a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item nav-link pl-3" href="{% url 'app_coffee:beans' %}">Coffee Bean</a>
                     <a class="dropdown-item nav-link pl-3" href="{% url 'app_coffee:community' %}">Community</a>

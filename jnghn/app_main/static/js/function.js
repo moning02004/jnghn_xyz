@@ -1,4 +1,8 @@
 $('document').ready(function() {
+
+    $('body').contextmenu(function() {
+        return false;
+    });
     $('.search-icon').click(function() {
         if ($('.search-icon').val() != 'hiddena') {
             $('.search-icon').val('hiddena')
@@ -14,7 +18,7 @@ $('document').ready(function() {
     $('.day-content').find("#"+$('.day-select option:selected').val()).removeClass('hiddena');
     $('.day-select').change(function() {
         console.log($('.day-select option:selected').val());
-        console.log($('.day-content').children().parent().html());
+        console.log($('.day-content').find("#"+$('.day-select option:selected').val()).html());
         $('.day-content').children().addClass('hiddena');
         $('.day-content').find("#"+$('.day-select option:selected').val()).removeClass('hiddena');
     });

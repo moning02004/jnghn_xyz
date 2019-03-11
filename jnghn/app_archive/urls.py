@@ -9,6 +9,6 @@ urlpatterns = [
     path('new/', views.new_view, name="new"),
     path('detail/<int:archive_id>', views.detail_view, name="detail"),
     path('edit/<int:archive_id>', views.edit_view, name="edit"),
-    path('delete/<int:archive_id>', views.delete, name="delete"),
-    path('delete_file/<int:archive_id>/<int:file_id>', views.delete_file, name="delete_file"),
+    path('_delete_/<int:archive_id>', views.delete, name="delete"),
+    path('_delete_file_/<int:archive_id>/<int:file_id>', views.delete_file, name="delete_file"),
 ] 
