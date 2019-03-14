@@ -49,6 +49,14 @@ body {
     cursor: default;
 }
 
+table tr .coffee-account-checkbox {
+    display: inline-block;
+    vertical-align: middle;
+    width: 1.2rem;
+    height: 1.2rem;
+	cursor: pointer;
+}
+
 .hiddena {
     visibility: hidden;
     float: right;

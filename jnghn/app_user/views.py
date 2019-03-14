@@ -16,7 +16,7 @@ def login_view(request):
                 if request.session.get('last'):
                     last = request.session['last']
                     del request.session['last']
-                    return redirect(str(last) + ':index')
+                    return redirect(str(last))
                 return redirect('app_main:index')
         except User.DoesNotExist:
             pass

@@ -104,14 +104,16 @@ def community_detail(request, pk):
 
 def community_delete(request, pk):
     try:
-        Community.objects.get(pk=pk)
+        Community.objects.get(pk=pk).delete()
         return redirect('app_coffee:community')
     except Community.DoesNotExist:
         return render(request, 'error.html')
 
 
 def account_index(request):
-    if not request.user.is_authenticated: return render(request, 'error.html')
+    if not request.user.is_authenticated:
+        request.session['last'] = 'app_coffee:account'
+        return render(request, 'error.html')
     account_list = Account.objects.all().filter(author=request.user)
     context = {
         'account_list': account_list,
@@ -152,10 +154,10 @@ def account_renew(request, pk):
 
 
 def account_delete(request, pk):
-    account = Account.objects.get(pk=pk)
-    if not request.user.is_authenticated and account.author != request.user: return render(request, 'error.html')
-    account.end_date = datetime.now().date()
-    account.period = (account.end_date - account.begin_date).days
-    print(account.period)
-    account.save()
-    return redirect('app_coffee:account')
+    try:
+        account = Account.objects.get(pk=pk)
+        if not request.user.is_authenticated and account.author != request.user: return render(request, 'error.html')
+        account.delete()
+        return redirect('app_coffee:account')
+    except Account.DoesNotExist:
+        return render(request, 'error.html')

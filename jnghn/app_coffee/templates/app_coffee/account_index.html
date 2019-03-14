@@ -1,11 +1,11 @@
 {% extends 'layout.html' %}
 {% load humanize %}
 
-{% block title %}<title>Coffee beans</title>{% endblock %}
+{% block title %}<title>Coffee Account</title>{% endblock %}
 
 {% block content %}
 <div class="d-flex large-view border-bottom my-1">
-    <span class="h2">Account Book List</span>
+    <span class="h2">Account Book</span>
     {% if user.is_authenticated %}
     <a href="{% url 'app_coffee:account_new' %}" class="btn border ml-auto my-auto"><i class="fa fa-pen text-dark"></i></a>
     {% endif %}
@@ -23,7 +23,7 @@
                 <th>Total Price</th>
             </tr>
             <tr class="text-center">
-                <td>{{ item }}</td>
+                <td>{{ account_list|length }}</td>
                 <td>{{ item_date }}</td>
                 <td>{{ all_amount | intcomma }} g</td>
                 <td>{{ all_price | intcomma }} 원</td>
@@ -32,19 +32,20 @@
     </div>
     {% if user.is_authenticated %}
     <div class="d-flex">
-        <div class="ml-auto"><span class="h4 cursor-pointer account-toggle"><i class="fa fa-toggle-off"></i></span></div>
+        <div class="ml-auto"><span class="h4 cursor-pointer ab-toggle"><i class="fa fa-toggle-off"></i></span></div>
     </div>
     {% endif %}
-    <table class="table table-striped table-bordered table-responsive-lg table-sm">
+    <table class="table table-striped table-bordered table-responsive-lg table-sm table-account">
         <tr class="text-center">
             <th>No.</th>
-            <th style="width: 40%">Bean</th>
+            <th style="width: 35%">Bean</th>
             <th>Begin ~ End</th>
             <th>Period</th>
             <th>Purchase Site</th>
             <th>Amount</th>
             <th>Price</th>
             <th></th>
+            <th hidden></th>
         </tr>
         {% for account in account_list %}
         <tr class="text-center">
@@ -65,6 +66,9 @@
                 {% else %}
                 <span><i class="fa fa-check"></i></span>
                 {% endif %}
+            </td>
+            <td class="align-middle" hidden>
+                <a href="{% url 'app_coffee:account_delete' account.id %}" class="btn btn-sm bg-cancel button-delete"><i class="fa fa-times"></i></a>
             </td>
         </tr>
         {% endfor %}
