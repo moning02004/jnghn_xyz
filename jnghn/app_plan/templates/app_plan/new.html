@@ -4,8 +4,8 @@
 
 {% block content %}
 <nav class="nav nav-tabs my-1">
-    <a href="#outline" class="nav-item nav-link active" data-toggle="tab" role="tab">개요</a>
-    <a href="#step" class="nav-item nav-link" data-toggle="tab"  role="tab">내용</a>
+    <a href="#outline" class="nav-item nav-link active" data-toggle="tab" role="tab">Outline</a>
+    <a href="#step" class="nav-item nav-link" data-toggle="tab"  role="tab">Content</a>
 </nav>
 <form action="" method="post" class="mb-5" onsubmit="return newSubmit();">
     {% csrf_token %}
@@ -68,7 +68,18 @@
     </div>
     <div class="d-flex flex-wrap form-group" style="margin-bottom: 30%;">
         <a href="{% url 'app_plan:router' %}" class="btn bg-login col-lg-2 text-dark button-prev"><i class="fa fa-arrow-left"></i> Back</a>
-        <input type="submit" class="btn bg-save col-lg-2 ml-auto" name="save" value="Save">
+
+        <div class="ml-auto d-flex">
+            <div class="my-auto mx-3">
+                <label for="lock_on">Lock On</label>
+                <input type="radio" name="lock" value="True" id="lock_on">
+            </div>
+            <div class="my-auto mx-3">
+                <label for="lock_off">Lock OFF</label>
+                <input type="radio" name="lock" value="False" id="lock_off" checked>
+            </div>
+        </div>
+        <input type="submit" class="btn bg-save col-lg-2" name="save" value="Save">
     </div>
 </form>
 {% endblock %}

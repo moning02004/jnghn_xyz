@@ -14,6 +14,14 @@ def index_view(request):
     return render(request, 'app_plan/index.html', {'plan_list': plan_list})
 
 
+def password_check(request, pk):
+    plan = Plan.objects.get(pk=pk)
+    if plan.lock == "True":
+        request.session['last'] = 'app_plan:detail'
+        return redirect('app_main:password_check', pk)
+    return redirect('app_plan:detail, pk')
+
+
 def detail_view(request, pk):
     try:
         plan = Plan.objects.get(pk=pk)
@@ -50,8 +58,6 @@ def detail_view(request, pk):
             plan.save()
         
         color = "red" if request.user.is_authenticated and HeartPlan.objects.filter(plan=plan, author=request.user).exists() else "white"
-        print(plan.days_set.all())
-        print(plan.days_set.all()[0].detail_set.all())
         return render(request, 'app_plan/detail.html', {'plan': plan, 'color': color, 'content': active[0],'comment': active[1]})
     except Plan.DoesNotExist:
         return render(request, 'error.html')
@@ -78,6 +84,7 @@ def new_view(request, period):
         plan.day_from = request.POST.get('day_from')
         plan.day_to = request.POST.get('day_to')
         plan.period = period
+        plan.lock = request.POST.get('lock')
         plan.save()
 
         for i in range(period):
@@ -85,13 +92,11 @@ def new_view(request, period):
             days.plan = plan
             days.save()
             for major, content in zip(request.POST.getlist('major'+str(i)), request.POST.getlist('content'+str(i))):
-                print(major+", "+content)
                 detail = Detail()
                 detail.days = days
                 detail.major = major
                 detail.content = content
                 detail.save()
-        print(plan.days_set.all()[0].detail_set.all())
         return redirect('app_plan:index')
     return render(request, 'app_plan/new.html', {'period': range(period)})
 
@@ -107,6 +112,7 @@ def edit_view(request, pk):
             plan.where = request.POST.get('where')
             plan.day_from = request.POST.get('day_from')
             plan.day_to = request.POST.get('day_to')
+            plan.lock = request.POST.get('lock')
             plan.save()
 
             Days.objects.all().filter(plan=plan).delete()

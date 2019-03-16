@@ -7,9 +7,10 @@ class Plan(models.Model):
     # index
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100, null=False)
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now=True)
     view = models.PositiveIntegerField(default=0)
     where = models.CharField(max_length=100)
+    lock = models.CharField(max_length=10, default='False')
 
     # detail
     day_from = models.DateField(null=False, blank=False, default=datetime.now)

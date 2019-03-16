@@ -51,6 +51,9 @@ def beans_delete(request, pk):
 
 
 def community_index(request):
+    if not request.user.is_authenticated:
+        request.session['last'] = 'app_coffee:community'
+        return render(request, 'error.html')
     post_list = Community.objects.all().order_by('created').reverse()
     return render(request, 'app_coffee/community_index.html', {'post_list': post_list})
 
@@ -83,6 +86,9 @@ def community_edit(request, pk):
 
 
 def community_detail(request, pk):
+    if not request.user.is_authenticated:
+        request.session['last'] = 'app_coffee:community_detail'
+        return render(request, 'error.html')
     try:
         post = Community.objects.get(pk=pk)
         active = ['active', '']
@@ -146,7 +152,6 @@ def account_renew(request, pk):
         if not request.user.is_authenticated and account.author != request.user: return render(request, 'error.html')
         account.end_date = datetime.now().date()
         account.period = (account.end_date - account.begin_date).days
-        print(account.period)
         account.save()
         return redirect('app_coffee:account')
     except:

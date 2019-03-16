@@ -1,28 +1,73 @@
 {% extends 'layout.html' %}
+{% load staticfiles %}
 
 {% block title %}<title>About Jeonghoon</title>{% endblock %}
 
 {% block content %}
-<div class="large-view my-3">
-    <span class="h2">About Jeonghoon</span>
-</div>
-<div class="border rounded p-3">
-    <div class="d-flex flex-wrap mb-1">
-        <div><input class="form-control flex-text cursor-default text-center" value="이름" readonly></div>
-        <div class="flex-fill">
-            <input class="form-control flex-text cursor-default bg-white text-center" value="유정훈 (Yu Jeonghoon)" readonly>
+<nav class="nav nav-tabs mb-1">
+    <a href="#information" class="nav-item nav-link active" data-toggle="tab">Information</a>
+    <a href="#others" class="nav-item nav-link" data-toggle="tab">Others</a>
+    <a href="#experience" class="nav-item nav-link" data-toggle="tab">Experience</a>
+</nav>
+<div class="border rounded p-3 mb-5">
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="information">
+            <div class="row px-3 form-group">
+                <div class="mr-3">
+                    <img src="" class="img img-thumbnail" width="200">
+                </div>
+                <div class="flex-fill align-self-end">
+                    <div class="d-flex flex-wrap mb-1">
+                        <div><input class="form-control cursor-default text-center" value="Name" readonly></div>
+                        <div class="flex-fill">
+                            <input class="form-control cursor-default bg-white text-center" value="유정훈 (Yu Jeonghoon)" readonly>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-wrap mb-1">
+                        <div><input class="form-control cursor-default text-center" value="Date of Birth" readonly></div>
+                        <div class="flex-fill">
+                            <input class="form-control cursor-default bg-white text-center" value="1995. 12. 23." readonly>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-wrap mb-1">
+                        <div><input class="form-control cursor-default text-center" value="E-Mail" readonly></div>
+                        <div class="flex-fill">
+                            <input class="form-control cursor-default bg-white text-center" value="moning02004@naver.com" readonly>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-wrap mb-1">
+                        <div><input class="form-control cursor-default text-center" value="Phone" readonly></div>
+                        <div class="flex-fill">
+                            <input class="form-control cursor-default bg-white text-center" value="010-7353-6231" readonly>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-wrap mb-1">
+                        <div><input class="form-control cursor-default text-center" value="github" readonly></div>
+                        <div class="flex-fill">
+                            <input class="form-control cursor-default bg-white text-center" value="https://github.com/moning02004" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="hr-3">
+
+            <div class="form-group">
+                <div class="d-flex flex-wrap">
+                    <div><input class="form-control flex-text cursor-default text-center" value="Introduce" readonly></div>
+                </div>
+                <div class="flex-fill">
+                    <textarea class="form-control cursor-default bg-white" style="height: 200px;" readonly>안녕하세요</textarea>
+                </div>
+            </div>
+
+            <div>
+
+            </div>
         </div>
-    </div>
-    <div class="d-flex flex-wrap mb-1">
-        <div><input class="form-control flex-text cursor-default text-center" value="" readonly></div>
-        <div class="flex-fill">
-            <input class="form-control flex-text cursor-default bg-white text-center" value="유정훈 (Yu Jeonghoon)" readonly>
+        <div class="tab-pane fade show active" id="others">
         </div>
-    </div>
-    <div class="d-flex flex-wrap mb-1">
-        <div><input class="form-control flex-text cursor-default text-center" value="이름" readonly></div>
-        <div class="flex-fill">
-            <input class="form-control flex-text cursor-default bg-white text-center" value="유정훈 (Yu Jeonghoon)" readonly>
+        <div class="tab-pane fade show active" id="experience">
         </div>
     </div>
 </div>

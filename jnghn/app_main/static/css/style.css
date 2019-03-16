@@ -68,3 +68,9 @@ table tr .coffee-account-checkbox {
     right: 0;
     background-color: white;
 }
+
+.hr-3 {
+    border: 0;
+    height: 0.3rem;
+    background: rgb(192, 192, 192);
+}

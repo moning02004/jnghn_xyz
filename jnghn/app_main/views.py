@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
 
 from app_archive.models import Archive
 from app_plan.models import Plan
@@ -26,5 +27,11 @@ def search_view(request):
     return render(request, 'app_main/search.html', {'keyword': primary, 'plan': plan_list, 'review': review_list, 'archive': archive_list})
 
 
-def password_view(request):
+def password_view(request, pk):
+    if request.method == "POST":
+        if request.user.check_password(request.POST.get('password')):
+            last = request.session.get('last')
+            return redirect(str(last), pk)
+        else:
+            return redirect('app_plan:index')
     return render(request, 'password.html')
