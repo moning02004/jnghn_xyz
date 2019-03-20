@@ -10,7 +10,7 @@ class Plan(models.Model):
     created = models.DateTimeField(auto_now=True)
     view = models.PositiveIntegerField(default=0)
     where = models.CharField(max_length=100)
-    lock = models.CharField(max_length=10, default='False')
+    password = models.CharField(max_length=100, default="", null=True)
 
     # detail
     day_from = models.DateField(null=False, blank=False, default=datetime.now)

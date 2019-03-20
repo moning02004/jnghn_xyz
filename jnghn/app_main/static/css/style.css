@@ -57,12 +57,13 @@ table tr .coffee-account-checkbox {
 	cursor: pointer;
 }
 
-.hiddena {
+.hidden-item {
     visibility: hidden;
     float: right;
     position: fixed;
 }
-.showa {
+.show-item {
+    animation-fill-mode: both;
     visibility: show;
     position: fixed;
     right: 0;

@@ -7,10 +7,13 @@
     <a href="{% url 'app_main:index' %}" class="h1"  style="text-decoration: none;">J N G H N</a>
 </div>
 <div class="container border pt-3 mb-3 thin-view">
-    {% if message %}
-    <div class="alert alert-primary" role="alert">{{message}}</div>
+    <div class="alert alert-primary text-center" role="alert">
+    {% if not message %}
+        Nice to Meet you!
+    {% else %}
+        {{ message }}
     {% endif %}
-
+    </div>
     <form action="" method="post">
         {% csrf_token %}
         <div class="form-group">

@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
@@ -5,6 +6,7 @@ from django.contrib import auth
 from app_notice.models import Notice
 from app_plan.models import Plan, HeartPlan
 from app_archive.models import Archive
+
 
 def login_view(request):
     if request.user.is_authenticated: return render(request, 'error.html')
@@ -31,18 +33,16 @@ def register_view(request):
         user.username = request.POST.get('username')
         user.email = request.POST.get('email')
         user.first_name = request.POST.get('name')
-
-        if request.POST.get('user_check') == "user_check":
-            try:
-                User.objects.get(username=request.POST.get('username'))
-                message = "This username is already registered"
-            except User.DoesNotExist:
-                message = "This username can use this username"
-            return render(request, 'app_user/register.html', {'userObject': user, 'message': message})
         user.set_password(request.POST.getlist('password')[0])
         user.save()
         return redirect('app_user:login')
     return render(request, 'app_user/register.html')
+
+
+def check_username(request):
+    return JsonResponse({
+        'message': 'NO' if User.objects.all().filter(username=request.GET.get('username')).exists() else 'OK'
+    })
 
 
 def logout(request):

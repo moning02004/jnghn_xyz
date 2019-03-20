@@ -1,26 +1,22 @@
-$('document').ready(function() {
-
-    $('body').contextmenu(function() {
-        return false;
-    });
+$(function() {
     $('.search-icon').click(function() {
-        if ($('.search-icon').val() != 'hiddena') {
-            $('.search-icon').val('hiddena')
-            $('.search-content').removeClass('hiddena');
-            $('.search-content').addClass('showa');
+        if ($('.search-icon').val() != 'hidden-item') {
+            $('.search-icon').val('hidden-item')
+            $('.search-content').removeClass('hidden-item');
+            $('.search-content').addClass('show-item');
         } else {
-            $('.search-icon').val('showa')
-            $('.search-content').removeClass('showa');
-            $('.search-content').addClass('hiddena');
+            $('.search-icon').val('show-item')
+            $('.search-content').removeClass('show-item');
+            $('.search-content').addClass('hidden-item');
         }
     });
 
-    $('.day-content').find("#"+$('.day-select option:selected').val()).removeClass('hiddena');
+    $('.day-content').find("#"+$('.day-select option:selected').val()).removeClass('hidden-item');
     $('.day-select').change(function() {
         console.log($('.day-select option:selected').val());
         console.log($('.day-content').find("#"+$('.day-select option:selected').val()).html());
-        $('.day-content').children().addClass('hiddena');
-        $('.day-content').find("#"+$('.day-select option:selected').val()).removeClass('hiddena');
+        $('.day-content').children().addClass('hidden-item');
+        $('.day-content').find("#"+$('.day-select option:selected').val()).removeClass('hidden-item');
     });
 
 
@@ -39,23 +35,18 @@ $('document').ready(function() {
     });
 
     //
-    $('.ab-toggle').click(function() {
-        if ($(".ab-toggle > i").hasClass("fa-toggle-off")){
-            $(".ab-toggle > i").removeClass("fa-toggle-off");
-            $(".ab-toggle > i").addClass("fa-toggle-on");
+    $('.account_book-toggle').click(function() {
+        if ($(".account_book-toggle > i").hasClass("fa-toggle-off")){
+            $(".account_book-toggle > i").removeClass("fa-toggle-off");
+            $(".account_book-toggle > i").addClass("fa-toggle-on");
             console.log($(".table-account tr td:last-child").html());
             $(".table-account tr th:last-child").removeAttr("hidden")
             $(".table-account tr td:last-child").removeAttr("hidden")
         } else {
-            $(".ab-toggle > i").removeClass("fa-toggle-on");
-            $(".ab-toggle > i").addClass("fa-toggle-off");
+            $(".account_book-toggle > i").removeClass("fa-toggle-on");
+            $(".account_book-toggle > i").addClass("fa-toggle-off");
             $(".table-account tr th:last-child").attr("hidden", "")
             $(".table-account tr td:last-child").attr("hidden", "")
         }
     });
 });
-
-function newWindow(fileUrl){
-    window.open(fileUrl, "", "width=480, height=600");
-    return false;
-}

@@ -16,10 +16,12 @@ def index_view(request):
 
 def password_check(request, pk):
     plan = Plan.objects.get(pk=pk)
-    if plan.lock == "True":
-        request.session['last'] = 'app_plan:detail'
-        return redirect('app_main:password_check', pk)
-    return redirect('app_plan:detail, pk')
+    if plan.password != "":
+        if request.method == "POST":
+            if plan.password == request.POST.get('password'):
+                return redirect('app_plan:detail', pk)
+        return render(request, 'password.html', {'message': ""})
+    return redirect('app_plan:detail', pk)
 
 
 def detail_view(request, pk):
@@ -84,7 +86,7 @@ def new_view(request, period):
         plan.day_from = request.POST.get('day_from')
         plan.day_to = request.POST.get('day_to')
         plan.period = period
-        plan.lock = request.POST.get('lock')
+        plan.password = request.POST.get('password')
         plan.save()
 
         for i in range(period):

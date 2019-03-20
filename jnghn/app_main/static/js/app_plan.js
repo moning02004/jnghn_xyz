@@ -65,14 +65,3 @@ $(document).ready(function() {
         return false;
     });
 });
-
-function newSubmit() {
-    if (confirm("저장할까요?")){
-        if ($('input[name="title"]').val() == "" || $('input[name="day_from"]').val() == "" || $('input[name="where"]').val() == "") {
-            alert("내용을 모두 입력하고 저장을 클릭하세요");
-            return false;
-        }
-        return true;
-    }
-    return false;
-}
