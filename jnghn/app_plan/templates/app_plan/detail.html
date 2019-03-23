@@ -125,15 +125,15 @@
         </div>
     </div>
 </div>
-<div class="d-flex" style="margin-bottom: 20%;">
+<div class="d-flex my-3" style="margin-bottom: 20%;">
     <div class="ml-auto">
         {% if plan.author == user or user.is_authenticated %}
         {% if plan.finish == "No" %}
-        <a class="btn text-dark border m-1" href="{% url 'app_plan:edit' plan.id %}"><i class="fa fa-edit"></i></a>
+        <a class="btn text-dark border" href="{% url 'app_plan:edit' plan.id %}"><i class="fa fa-edit"></i></a>
         {% endif %}
-        <a class="btn text-dark border m-1" href="{% url 'app_plan:delete' plan.id %}"><i class="fa fa-trash-alt"></i></a>
+        <a class="btn text-dark border" href="{% url 'app_plan:delete' plan.id %}"><i class="fa fa-trash-alt"></i></a>
         {% endif %}
-        <a class="btn text-dark border m-1" href="{% url 'app_plan:index' %}"><i class="fa fa-sign-out-alt"></i></a>
+        <a class="btn text-dark border" href="{% url 'app_plan:index' %}"><i class="fa fa-sign-out-alt"></i></a>
     </div>
 </div>
 {% endblock %}

@@ -5,10 +5,10 @@ import os
 
 
 def file_path(instance, filename):
-    return '{0}/{2}/Archive/{1}'.format(instance.archive.author.username, filename, date.today())
+    return '{0}/{2}/Archive/{1}'.format(instance.material.author.username, filename, date.today())
 
 
-class Archive(models.Model):
+class Material(models.Model):
     # index
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
@@ -23,7 +23,7 @@ class Archive(models.Model):
  
 
 class Attachment(models.Model):
-    archive = models.ForeignKey(Archive, on_delete=models.CASCADE)
+    material = models.ForeignKey(Material, on_delete=models.CASCADE)
     file = models.FileField(upload_to=file_path, null=True, blank=True)
 
     def delete(self, *args, **kwargs):
@@ -34,8 +34,8 @@ class Attachment(models.Model):
         return os.path.basename(self.file.name)
 
 
-class CommentArchive(models.Model):
-    archive = models.ForeignKey(Archive, on_delete=models.CASCADE)
+class CommentMaterial(models.Model):
+    material = models.ForeignKey(Material, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     created = models.DateTimeField(auto_now_add=True)

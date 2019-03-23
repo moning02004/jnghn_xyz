@@ -13,14 +13,14 @@
         <div class="tab-pane fade show active" id="outline">
             <div class="border rounded p-3 form-group">
                 <div class="d-flex flex-wrap form-group">
-                    <input class="form-control text-center" value="제목" readonly>
+                    <input class="form-control text-center" value="Title" readonly>
                     <div class="flex-grow-1">
                         <input type="text" class="form-control" name="title" placeholder="제목">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <input class="form-control text-center" value="날짜" readonly>
+                    <input class="form-control text-center" value="When" readonly>
                     <div class="d-flex flex-wrap">
                         <div class="flex-fill">
                             <input type="date" class="form-control" name="day_from">
@@ -33,29 +33,28 @@
                         {% endif %}
                     </div>
                 </div>
-
-                <input class="form-control text-center" value="지역" readonly>
-                <div class="flex-fill">
-                    <input type="text" class="form-control" name="where" placeholder="지역">
+                <div class="form-group">
+                    <input class="form-control text-center" value="Where" readonly>
+                    <div class="flex-fill">
+                        <input type="text" class="form-control" name="where" placeholder="지역">
+                    </div>
                 </div>
 
-                <div class="accordion mt-2">
-                    <div class="border rounded">
-                        <button type="button" class="btn btn-link w-100 text-dark" data-toggle="collapse" data-target="#password-field">Option</button>
-                    </div>
+                <div class="accordion">
+                    <input type="button" class="form-control cursor-pointer" data-toggle="collapse" data-target="#password-field" value="Password Setting [optional]" readonly>
 
                     <div class="collapse" id="password-field">
                         <div class="input-group my-1">
                             <div class="input-group-prepend">
-                                <label class="input-group-text"><i class="fa fa-key"></i></label>
+                                <label class="input-group-text input-password"><i class="fa fa-key"></i></label>
                             </div>
-                            <input type="password" class="form-control" name="password" placeholder="6자리 이상" value="">
+                            <input type="password" class="form-control password" name="password" placeholder="over 8 letters included alphabet and number">
                         </div>
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <label class="input-group-text"><i class="fa fa-key"></i></label>
+                                <label class="input-group-text input-re-password"><i class="fa fa-key"></i></label>
                             </div>
-                            <input type="password" class="form-control" name="password_check" placeholder="재입력" value="">
+                            <input type="password" class="form-control re-password" name="password_check" placeholder="re-Type">
                         </div>
                     </div>
                 </div>

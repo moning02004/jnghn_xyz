@@ -48,7 +48,3 @@ def delete_user(request, username):
         except User.DoesNotExist:
             return redirect('app_admin:index')
     return render(request, 'error.html')
-
-
-def edit_me_view(request):
-    return render(request, 'app_admin/edit_me.html')

@@ -127,7 +127,7 @@ def account_index(request):
         'item_date': str(account_list[0].begin_date) + ' ~ ' + str(account_list.last().begin_date),
         'all_amount': str(account_list.aggregate(amount=Sum('amount')).get('amount')),
         'all_price': str(account_list.aggregate(price=Sum('price')).get('price'))
-    }
+    } if len(account_list) > 0 else {}
     return render(request, 'app_coffee/account_index.html', context)
 
 

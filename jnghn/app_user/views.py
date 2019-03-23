@@ -5,7 +5,7 @@ from django.contrib import auth
 
 from app_notice.models import Notice
 from app_plan.models import Plan, HeartPlan
-from app_archive.models import Archive
+from app_material.models import Material
 
 
 def login_view(request):

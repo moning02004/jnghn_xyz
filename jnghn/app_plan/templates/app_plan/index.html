@@ -24,7 +24,7 @@
   {% for plan in plan_list %}
   <tr class="text-center">
     <td>{{ plan.finish }}</td>
-    <td><a href="{% url 'app_plan:password_check' plan.id %}">{{ plan.title }}</a></td>
+    <td><a href="{% url 'app_plan:password_check' plan.id %}">{{ plan.title }} {% if plan.password != "" %}<i class="fa fa-lock"></i>{% endif %}</a></td>
     <td>{{ plan.author }}</td>
     <td>{{ plan.created | date:"Y. m. d. H:i" }}</td>
     <td>{{ plan.view }}</td>
