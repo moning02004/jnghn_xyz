@@ -1,6 +1,14 @@
 $(function() {
     // post submit
-    $('.post-click').click(function() {
+    $('input[value="Save"]').click(function() {
+      var str = $('textarea').val();
+      console.log("STR : " + typeof(str));
+      for(var i = 0; i != 10; i++) {
+        console.log(str.charAt(i) == "\n");
+      }
+      console.log("STR : " + str.search("\n"));
+      console.log("STR : " + str);
+
         if (confirm("저장할까요?")){
             if ($('input[name="title"]').val() == "" || $('input[name="day_from"]').val() == "" || $('input[name="where"]').val() == "") {
                 alert("내용을 모두 입력하고 저장을 클릭하세요!");

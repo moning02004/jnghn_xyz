@@ -11,6 +11,11 @@ def index_view(request):
 def detail_view(request, pk):
     try:
         freetalk = FreeTalk.objects.get(pk=pk)
+        number = 1
+        for e in list(freetalk.content):
+            if e == '\n':
+                number = number + 1
+        print(number)
         active = ['active', '']
         if request.method == "POST":
             comment = CommentFree()
@@ -19,7 +24,7 @@ def detail_view(request, pk):
             comment.content = request.POST.get('content')
             comment.save()
             active = ['', 'active']
-        return render(request, 'app_freetalk/detail.html', {'freetalk': freetalk, 'content': active[0], 'comment': active[1]})
+        return render(request, 'app_freetalk/detail.html', {'freetalk': freetalk, 'content': active[0], 'comment': active[1], 'number': int(number*20)})
     except:
         return render(request, 'error.html')
 

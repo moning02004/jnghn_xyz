@@ -7,7 +7,6 @@ from app_plan.models import Plan
 
 
 def file_path(instance, filename):
-    print(type(instance))
     return '{0}/{2}/Review/{1}'.format(instance.review.author.username, filename, date.today())
 
 

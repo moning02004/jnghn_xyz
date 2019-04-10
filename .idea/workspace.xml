@@ -3,53 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="09550121-e1cc-4171-83a3-797c3777c4ec" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_admin/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_admin/migrations/0002_auto_20190303_1614.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_admin/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_admin/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_admin/templates/app_admin/edit_me.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_admin/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_admin/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_admin/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_admin/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_archive/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_material/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_archive/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_material/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_archive/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_material/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_archive/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_archive/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_material/migrations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_archive/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_material/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_archive/templates/app_archive/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_material/templates/app_material/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_archive/templates/app_archive/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_material/templates/app_material/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_archive/templates/app_archive/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_material/templates/app_material/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_archive/templates/app_archive/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_material/templates/app_material/new.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_archive/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_material/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_archive/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_material/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_coffee/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_coffee/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_main/static/image/background.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_main/static/image/background2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_main/static/image/kenya.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_main/static/image/me.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_main/static/image/me2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_main/static/image/photothumb.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_main/static/js/app_plan.js" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_main/static/js/app_plan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_main/static/js/app_user.js" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_main/static/js/register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_main/static/js/button_function.js" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_main/static/js/button_function.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_main/static/js/function.js" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_main/static/js/function.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_main/static/js/submit_function.js" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_main/static/js/submit_function.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_main/templates/app_main/me.html" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_main/templates/app_main/me.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_main/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_main/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_main/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_main/templates/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_main/templates/password.html" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_main/templates/password.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_main/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_main/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_plan/templates/app_plan/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_plan/templates/app_plan/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_plan/templates/app_plan/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_plan/templates/app_plan/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_plan/templates/app_plan/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_plan/templates/app_plan/new.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_plan/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_plan/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_review/templates/app_review/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_review/templates/app_review/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_review/templates/app_review/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_review/templates/app_review/new.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_review/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_review/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_user/templates/app_user/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_user/templates/app_user/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_user/templates/app_user/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_user/templates/app_user/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/app_user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/app_user/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jnghn/jnghn/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/jnghn/jnghn/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,92 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jnghn/app_main/static/js/submit_function.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jnghn/app_user/templates/app_user/register.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-114">
-              <caret line="15" column="62" selection-start-line="15" selection-start-column="62" selection-end-line="15" selection-end-column="62" />
-              <folding>
-                <element signature="n#style#0;n#a#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jnghn/app_main/static/js/register.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="43" selection-start-line="43" selection-end-line="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jnghn/app_material/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jnghn/app_material/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1330">
-              <caret line="70" column="45" selection-start-line="70" selection-start-column="45" selection-end-line="70" selection-end-column="45" />
-              <folding>
-                <element signature="e#0#45#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jnghn/app_material/templates/app_material/detail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/jnghn/app_material/templates/app_material/edit.html">
+        <entry file="file://$PROJECT_DIR$/jnghn/jnghn/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" column="41" lean-forward="true" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jnghn/app_material/templates/app_material/new.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="61" selection-end-line="38" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jnghn/app_material/templates/app_material/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="24" lean-forward="true" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+            <state relative-caret-position="221">
+              <caret line="129" selection-start-line="129" selection-end-line="129" />
             </state>
           </provider>
         </entry>
@@ -192,7 +64,6 @@
         <option value="$PROJECT_DIR$/jnghn/app_main/templates/error.html" />
         <option value="$PROJECT_DIR$/jnghn/app_archive/templates/app_archive/index.html" />
         <option value="$PROJECT_DIR$/jnghn/app_main/templates/app_main/util_calc.html" />
-        <option value="$PROJECT_DIR$/jnghn/jnghn/settings.py" />
         <option value="$PROJECT_DIR$/jnghn/app_plan/models.py" />
         <option value="$PROJECT_DIR$/jnghn/app_coffee/templates/app_coffee/account_index.html" />
         <option value="$PROJECT_DIR$/jnghn/app_main/static/css/style.css" />
@@ -237,6 +108,7 @@
         <option value="$PROJECT_DIR$/jnghn/app_material/views.py" />
         <option value="$PROJECT_DIR$/jnghn/app_material/templates/app_material/detail.html" />
         <option value="$PROJECT_DIR$/jnghn/app_material/templates/app_material/edit.html" />
+        <option value="$PROJECT_DIR$/jnghn/jnghn/settings.py" />
       </list>
     </option>
   </component>
@@ -252,6 +124,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -268,70 +141,12 @@
               <item name="jnghn_xyz" type="b2602c69:ProjectViewProjectNode" />
               <item name="jnghn_xyz" type="462c0819:PsiDirectoryNode" />
               <item name="jnghn" type="462c0819:PsiDirectoryNode" />
-              <item name="app_main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jnghn_xyz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jnghn_xyz" type="462c0819:PsiDirectoryNode" />
               <item name="jnghn" type="462c0819:PsiDirectoryNode" />
-              <item name="app_main" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jnghn_xyz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jnghn_xyz" type="462c0819:PsiDirectoryNode" />
-              <item name="jnghn" type="462c0819:PsiDirectoryNode" />
-              <item name="app_main" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jnghn_xyz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jnghn_xyz" type="462c0819:PsiDirectoryNode" />
-              <item name="jnghn" type="462c0819:PsiDirectoryNode" />
-              <item name="app_material" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jnghn_xyz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jnghn_xyz" type="462c0819:PsiDirectoryNode" />
-              <item name="jnghn" type="462c0819:PsiDirectoryNode" />
-              <item name="app_material" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jnghn_xyz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jnghn_xyz" type="462c0819:PsiDirectoryNode" />
-              <item name="jnghn" type="462c0819:PsiDirectoryNode" />
-              <item name="app_material" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="app_material" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jnghn_xyz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jnghn_xyz" type="462c0819:PsiDirectoryNode" />
-              <item name="jnghn" type="462c0819:PsiDirectoryNode" />
-              <item name="app_user" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jnghn_xyz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jnghn_xyz" type="462c0819:PsiDirectoryNode" />
-              <item name="jnghn" type="462c0819:PsiDirectoryNode" />
-              <item name="app_user" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jnghn_xyz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jnghn_xyz" type="462c0819:PsiDirectoryNode" />
-              <item name="jnghn" type="462c0819:PsiDirectoryNode" />
-              <item name="app_user" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="app_user" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -366,8 +181,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4967742" visible="true" weight="0.1850628" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4967742" visible="true" weight="0.1850628" />
       <window_info id="Structure" order="1" sideWeight="0.50317127" side_tool="true" weight="0.15333775" />
       <window_info id="Favorites" order="2" sideWeight="0.5032258" side_tool="true" weight="0.31182796" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -378,7 +194,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.20851064" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.20851064" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -608,13 +424,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jnghn/app_admin/templates/app_admin/edit_me.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="78" column="101" lean-forward="true" selection-start-line="78" selection-start-column="101" selection-end-line="78" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/jnghn/app_admin/templates/app_admin/edit_me.html" />
     <entry file="file://$PROJECT_DIR$/jnghn/app_admin/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
@@ -674,13 +484,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jnghn/jnghn/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1322">
-          <caret line="92" selection-start-line="92" selection-end-line="92" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jnghn/jnghn/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -734,7 +537,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jnghn/app_user/templates/app_user/register.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-114">
+        <state relative-caret-position="285">
           <caret line="15" column="62" selection-start-line="15" selection-start-column="62" selection-end-line="15" selection-end-column="62" />
           <folding>
             <element signature="n#style#0;n#a#0;n#div#0;n#!!top" expanded="true" />
@@ -744,14 +547,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jnghn/app_main/static/js/register.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
+        <state relative-caret-position="817">
           <caret line="43" selection-start-line="43" selection-end-line="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jnghn/app_material/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
+        <state relative-caret-position="57">
           <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
@@ -761,7 +564,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jnghn/app_material/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1330">
+        <state relative-caret-position="1292">
           <caret line="70" column="45" selection-start-line="70" selection-start-column="45" selection-end-line="70" selection-end-column="45" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
@@ -794,6 +597,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="18" column="41" lean-forward="true" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jnghn/jnghn/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="129" selection-start-line="129" selection-end-line="129" />
         </state>
       </provider>
     </entry>
