@@ -6,6 +6,7 @@ from django.contrib import auth
 from app_notice.models import Notice
 from app_plan.models import Plan, HeartPlan
 from app_material.models import Material
+from .models import Jnghner
 
 
 def login_view(request):
@@ -32,9 +33,12 @@ def register_view(request):
         user = User()
         user.username = request.POST.get('username')
         user.email = request.POST.get('email')
-        user.first_name = request.POST.get('name')
         user.set_password(request.POST.getlist('password')[0])
         user.save()
+        jnghn = Jnghner()
+        jnghn.user = user
+        jnghn.name = request.POST.get('name')
+        jnghn.save()
         return redirect('app_user:login')
     return render(request, 'app_user/register.html')
 
@@ -59,10 +63,12 @@ def leave(request, username):
     return render(request, 'error.html')
 
 
-def profile_view(request):
-    plan_list = Plan.objects.all().filter(author=request.user)
-    archive_list = Archive.objects.all().filter(author=request.user)
-    context = {'plan_list': plan_list, 'archive_list': archive_list}
+def profile_view(request, pk):
+    if not request.user.is_authenticated: return render(request, 'error.html')
+    user = User.objects.get(username=pk)
+    plan_list = Plan.objects.all().filter(author=user)
+    material_list = Material.objects.all().filter(author=user)
+    context = {'plan_list': plan_list, 'material_list': material_list}
 
     return render(request, 'app_user/profile.html', context)
 
@@ -109,11 +115,11 @@ def find_view(request):
     return render(request, 'app_user/find/find.html')
 
 
-def reset_view(request):
-    if request.user.is_authenticated: return render(request, 'error.html')
-    if request.method == "POST":
-        user = User.objects.get(username=request.POST.get('username'))
-        if request.POST.getlist('password')[0] != "" and (request.POST.getlist('password')[0] == request.POST.getlist('password')[1]):
-            user.set_password(request.POST.getlist('password')[0])
-            user.save()
-    return redirect('app_user:login')
+def friend_register(request, pk):
+    jnghn = Jnghner.objects.get(user=request.user)
+    jnghn.friend.add(Jnghner.objects.get(user=User.objects.get(username=pk)))
+
+    print(list((request.user).jnghner.friend.all()))
+    print((request.user).jnghner)
+
+    return redirect('app_main:index')

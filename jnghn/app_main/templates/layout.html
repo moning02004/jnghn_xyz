@@ -9,7 +9,7 @@
         <ul class="navbar-nav nav-nav">
             <li class="nav-item px-3"><a class="nav-link font-weight-bold" href="{% url 'app_main:index' %}">Home</a></li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle font-weight-bold px-3" data-toggle="dropdown" href="#" role="button">Service</a>
+                <a class="nav-link dropdown-toggle font-weight-bold px-3" data-toggle="dropdown" href="#" role="button">Travel & Date</a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item nav-link pl-3" href="{% url 'app_plan:index' %}">Plan</a>
                     <a class="dropdown-item nav-link pl-3" href="{% url 'app_review:index' %}">Review</a>
@@ -32,7 +32,7 @@
         </div>
     </div>
     <div class="dropdown ml-auto bg-white" style="border-radius: 4px;">
-        <button class="py-auto btn btn-outline-secondary dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown">
+        <button class="py-auto btn btn-outline-secondary dropdown-toggle" role="button" data-toggle="dropdown">
             <span>
                 {% if user.is_authenticated %}
                 <i class="fa fa-user"></i> {{ user.username }}
@@ -45,7 +45,7 @@
             {% if user.is_staff %}
             <a class="dropdown-item" href="{% url 'app_admin:index' %}">Admin</a>
             {% else %}
-            <a class="dropdown-item" href="{% url 'app_user:profile' %}">Profile</a>
+            <a class="dropdown-item" href="{% url 'app_user:profile' user %}">Profile</a>
             {% endif %}
             <a class="dropdown-item" href="{% url 'app_user:logout' %}">Log Out</a>
 

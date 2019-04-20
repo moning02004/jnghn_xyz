@@ -15,7 +15,6 @@ def detail_view(request, pk):
         for e in list(freetalk.content):
             if e == '\n':
                 number = number + 1
-        print(number)
         active = ['active', '']
         if request.method == "POST":
             comment = CommentFree()

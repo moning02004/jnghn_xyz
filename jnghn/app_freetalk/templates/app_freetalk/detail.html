@@ -32,7 +32,14 @@
             {% for comment in freetalk.commentfree_set.all %}
             <div class="d-flex mb-3">
                 <div class="border p-2 rounded">
-                    <span><i class="fa fa-user"></i> {{ comment.author }}</span>
+                  <a class="cursor-pointer dropdown" role="button" data-toggle="dropdown">
+                      <span><i class="fa fa-user"></i> {{ comment.author }}</span>
+                  </a>
+                  {% if comment.author != user and not comment.author.jnghner in user.jnghner.friend.all %}
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'app_user:friend_register' comment.author %}" style="font-size:0.7rem;">Add a Friends</a>
+                  </div>
+                  {% endif %}
                 </div>
                 <div class="my-auto">
                     <span class="mx-3">{{ comment.content }}</span>
