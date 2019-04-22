@@ -68,7 +68,7 @@ def profile_view(request, pk):
     user = User.objects.get(username=pk)
     plan_list = Plan.objects.all().filter(author=user)
     material_list = Material.objects.all().filter(author=user)
-    context = {'plan_list': plan_list, 'material_list': material_list}
+    context = {'plan_list': plan_list, 'material_list': material_list, 'user_o': user}
 
     return render(request, 'app_user/profile.html', context)
 

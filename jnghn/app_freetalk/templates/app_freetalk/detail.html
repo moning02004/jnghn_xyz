@@ -23,7 +23,7 @@
                 <div class="flex-fill"><input class="form-control text-center bg-white" value="{{ freetalk.created | date:'Y. m. d. H:i'}}" readonly></div>
             </div>
             <div class="dropdown-divider"></div>
-            <textarea class="form-control bg-white" style="height: {{number}}pt; font-size: 11pt;" readonly>{{ freetalk.content }}</textarea>
+            <div class="bg-white border rounded p-3" style="overflow:hidden; word-wrap:break-word;">{{ freetalk.content }}</div>
         </div>
     </div>
 
@@ -64,9 +64,10 @@
 <div class="d-flex my-3">
     <div class="ml-auto">
         {% if freetalk.author == user or request.user.is_superuser %}
-        <a class="btn text-dark border m-1" href="{% url 'app_freetalk:delete' freetalk.id %}"><i class="fa fa-trash-alt"></i></a>
+        <a class="btn text-dark border" href="{% url 'app_freetalk:edit' freetalk.id %}"><i class="fa fa-pen"></i></a>
+        <a class="btn text-dark border" href="{% url 'app_freetalk:delete' freetalk.id %}"><i class="fa fa-trash-alt"></i></a>
         {% endif %}
-        <a class="btn text-dark border m-1" href="{% url 'app_freetalk:index' %}"><i class="fa fa-sign-out-alt"></i></a>
+        <a class="btn text-dark border" href="{% url 'app_freetalk:index' %}"><i class="fa fa-sign-out-alt"></i></a>
     </div>
 </div>
 {% endblock %}

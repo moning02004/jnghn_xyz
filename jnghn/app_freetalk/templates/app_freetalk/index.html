@@ -12,23 +12,19 @@
 {% if not freetalk_list %}
 <p class="text-center">Post is not existed</p>
 {% else %}
-<table class="table table-responsive-md table-bordered table-striped table-sm">
-    <tr class="text-center">
-        <th>No.</th>
-        <th style="width: 60%;">Title</th>
-        <th>Author</th>
-        <th>Created</th>
-        <th>View</th>
-    </tr>
-    {% for freetalk in freetalk_list %}
-    <tr class="text-center">
-        <td>{{ freetalk.id }}</td>
-        <td><a href="{% url 'app_freetalk:detail' freetalk.id %}">{{ freetalk.title }}</a></td>
-        <td>{{ freetalk.author }}</td>
-        <td>{{ freetalk.created|date:"Y. m. d. H:i" }}</td>
-        <td>{{ freetalk.view }}</td>
-    </tr>
-    {% endfor %}
-</table>
+{% for freetalk in freetalk_list %}
+<div class="form-group card">
+  <div class="card-header">
+    <a href="{% url 'app_freetalk:detail' freetalk.id %}" class="d-flex">
+      <span>{{ freetalk.title }}</span>
+      <span class="ml-auto">{{ freetalk.created | date:"Y.m.d. H:i"}}</span>
+    </a>
+  </div>
+  <div class="p-3" style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+    {{ freetalk.content }}
+  </div>
+</div>
+
+{% endfor %}
 {% endif %}
 {% endblock %}

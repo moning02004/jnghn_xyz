@@ -14,26 +14,32 @@
             <div class="d-flex flex-wrap">
                 <div><input class="form-control text-center" value="Name" readonly></div>
                 <div class="flex-fill">
-                    <input class="form-control text-center bg-white" value="{{ user.first_name }}" readonly>
+                    <input class="form-control text-center bg-white" value="{{ user_o.first_name }}" readonly>
                 </div>
             </div>
             <div class="d-flex flex-wrap">
                 <div><input class="form-control text-center" value="E-Mail" readonly></div>
                 <div class="flex-fill">
-                    <input class="form-control text-center bg-white" value="{{ user.email }}" readonly>
+                    <input class="form-control text-center bg-white" value="{{ user_o.email }}" readonly>
                 </div>
             </div>
             <div class="d-flex flex-wrap">
                 <div><input class="form-control text-center" value="Join Date" readonly></div>
                 <div class="flex-fill">
-                    <input class="form-control text-center bg-white" value="{{ user.date_joined | date:'Y. m. d. H:i' }}" readonly>
+                    <input class="form-control text-center bg-white" value="{{ user_o.date_joined | date:'Y. m. d. H:i' }}" readonly>
                 </div>
             </div>
         </div>
+        {% if user_o == user %}
         <div class="d-flex flex-wrap">
             <a href="{% url 'app_user:edit' %}" class="btn bg-main ml-auto text-dark">Edit...</a>
             <a href="{% url 'app_user:leave' user.username %}" class="btn bg-cancel">Leave...</a>
         </div>
+        {% else}
+        <div class="d-flex flex-wrap">
+            <a href="{% url 'app_user:edit' %}" class="btn bg-main ml-auto btn-go-back">Back</a>
+        </div>
+        {% endif %}
     </div>
 
     <div class="tab-pane fade" id="friend">
@@ -47,7 +53,7 @@
               {% for friend in user.jnghner.friend.all %}
               <tr>
                 <td>{{forloop.counter}}</td>
-                <td><a href="{% url 'app_user:profile' friend.user %}" >{{friend.user}}</a></td>
+                <td><a href="{% url 'app_user:profile' friend.user %}">{{friend.user}}</a></td>
               </tr>
               {% endfor %}
             </table>

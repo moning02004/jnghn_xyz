@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% load staticfiles %}
+{% block title %}<title>Jeonghoon's PortFolio</title>{% endblock %}
+
+{% block picture %}
+<div style="height: 300px;">
+    <img src="{% static 'image/background3.jpg' %}" class="img large-view" style="height: 300px;">
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex large-view border-bottom my-1">
+    <span class="h2">Port Folio</span>
+    {% if user.is_authenticated %}
+    <a href="{% url 'app_freetalk:new' %}" class="btn border my-auto ml-auto"><i class="fa fa-pen text-dark"></i></a>
+    {% endif %}
+</div>
+{% if not portfolio_list %}
+<p class="text-center">Post is not existed</p>
+{% else %}
+{% for portfolio in portfolio_list %}
+<div class="form-group card">
+  <div class="card-header">
+    <a href="{% url 'app_freetalk:detail' portfolio.id %}" class="d-flex">
+      <span>{{ portfolio.title }}</span>
+      <span class="ml-auto">{{ portfolio.created | date:"Y.m.d. H:i"}}</span>
+    </a>
+  </div>
+  <div class="p-3" style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+    {{ portfolio.content }}
+  </div>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}

@@ -15,7 +15,6 @@ table tr td {
 .nav-nav li > .nav-link {
     font-size:1.2rem;
 }
-
 .large-view {width: 100%;}
 .thin-view {width:50%;}
 @media ( max-width: 850px ) {

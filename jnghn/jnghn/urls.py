@@ -14,8 +14,6 @@ urlpatterns = [
     path('administrator/', include('app_admin.urls')),
     path('notice/', include('app_notice.urls')),
     path('freetalk/', include('app_freetalk.urls')),
+    path('portfolio/', include('app_portfolio.urls')),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
-
-
-
