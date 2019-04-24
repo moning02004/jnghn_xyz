@@ -6,7 +6,7 @@ from django.contrib import auth
 from app_notice.models import Notice
 from app_plan.models import Plan, HeartPlan
 from app_material.models import Material
-from .models import Jnghner
+from .models import Jnghner, Message, Unread
 
 
 def login_view(request):
@@ -116,10 +116,15 @@ def find_view(request):
 
 
 def friend_register(request, pk):
-    jnghn = Jnghner.objects.get(user=request.user)
-    jnghn.friend.add(Jnghner.objects.get(user=User.objects.get(username=pk)))
-
-    print(list((request.user).jnghner.friend.all()))
-    print((request.user).jnghner)
-
+    user = User.objects.get(username=pk)
+    msg = Message(user = user)
+    msg.message = str(request.user) + '님이 친구 요청을 보냈습니다.'
+    msg.source = 'profile'
+    msg.save()
+    unread = Unread(message=msg)
+    unread.save()
     return redirect('app_main:index')
+
+
+def message_view(request):
+    return render(request, 'error.html')

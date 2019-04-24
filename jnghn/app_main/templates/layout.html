@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block nav %}
-<nav class="navbar navbar-expand-lg navbar-light bg-main">
+<nav class="navbar navbar-expand-lg navbar-light border-bottom">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainToggle">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -27,9 +27,15 @@
             <li class="nav-item font-weight-bold px-3"><a class="nav-link" href="{% url 'app_freetalk:index' %}">Free Talk</a></li>
             <li class="nav-item font-weight-bold px-3"><a class="nav-link" href="{% url 'app_portfolio:index' %}">PortFolio</a></li>
         </ul>
-
-        <div class="bg-white ml-auto mr-3" style="border-radius: 4px;">
-            <button class="btn btn-outline-secondary search-icon"><i class="fa fa-search"></i></button>
+        <div class="d-flex ml-auto">
+          {% if user.is_authenticated %}
+          <div class="bg-white mr-3" style="border-radius: 4px;">
+              <a href="{% url 'app_user:message' %}" class="btn btn-outline-secondary border"><i class="fa fa-envelope"></i><span>{{user.message_set.all|length}}</span></a>
+          </div>
+          {% endif %}
+          <div class="bg-white mr-3" style="border-radius: 4px;">
+              <button class="btn btn-outline-secondary search-icon"><i class="fa fa-search"></i></button>
+          </div>
         </div>
     </div>
     <div class="dropdown ml-auto bg-white" style="border-radius: 4px;">

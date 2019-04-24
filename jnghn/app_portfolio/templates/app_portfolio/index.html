@@ -12,7 +12,7 @@
 <div class="d-flex large-view border-bottom my-1">
     <span class="h2">Port Folio</span>
     {% if user.is_authenticated %}
-    <a href="{% url 'app_freetalk:new' %}" class="btn border my-auto ml-auto"><i class="fa fa-pen text-dark"></i></a>
+    <a href="{% url 'app_portfolio:new' %}" class="btn border my-auto ml-auto"><i class="fa fa-pen text-dark"></i></a>
     {% endif %}
 </div>
 {% if not portfolio_list %}

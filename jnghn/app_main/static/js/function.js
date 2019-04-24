@@ -18,9 +18,22 @@ $(function() {
     // plan detail
     $('.day-content').find("#"+$('.day-select option:selected').val()).removeClass('hidden-item');
     $('.day-select').change(function() {
-        console.log($('.day-select option:selected').val());
-        console.log($('.day-content').find("#"+$('.day-select option:selected').val()).html());
-        $('.day-content').children().addClass('hidden-item');
-        $('.day-content').find("#"+$('.day-select option:selected').val()).removeClass('hidden-item');
+      console.log($('.day-select option:selected').val());
+      console.log($('.day-content').find("#"+$('.day-select option:selected').val()).html());
+      $('.day-content').children().addClass('hidden-item');
+      $('.day-content').find("#"+$('.day-select option:selected').val()).removeClass('hidden-item');
     });
+
+
+    $('.add_friend').click(function() {
+      var $username = $('input[name="username"]').val() || "";
+      $.ajax({
+        url: '/user/__check__/',
+        data: {username: $username},
+        success: function(data) {
+          console.log("AA");
+        }
+      });
+    };
+
 });

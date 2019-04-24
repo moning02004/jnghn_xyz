@@ -18,7 +18,7 @@
             </div>
             <div class="d-flex flex-wrap mb-1">
                 <div><input class="form-control text-center" value="Author" readonly></div>
-                <div class="flex-fill"><input class="form-control text-center bg-white" value="{{ freetalk.author }}" readonly></div>
+                <div class="flex-fill"><a class="form-control text-center bg-white" href="{% url 'app_user:profile' freetalk.author %}">{{ freetalk.author }}</a></div>
                 <div><input class="form-control text-center" value="Created" readonly></div>
                 <div class="flex-fill"><input class="form-control text-center bg-white" value="{{ freetalk.created | date:'Y. m. d. H:i'}}" readonly></div>
             </div>

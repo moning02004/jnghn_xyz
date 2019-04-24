@@ -3,6 +3,17 @@
 {% block title %}<title>Profile : {{ user.username }}</title>{% endblock %}
 
 {% block content %}
+<div class="h2 py-3">
+  {{ user_o.jnghner.name }} 's Profile
+  {% if user_o != user and not user_o.jnghner in user.jnghner.friend.all %}
+  <input hidden value="user_o" name="username">
+  <button class="btn btn-sm bg-main text-dark add_friend"><i class="fa fa-plus"> 친구 추가</i></button>
+  {% elif user_o != user and user_o.jnghner in user.jnghner.friend.all %}
+  <button class="btn btn-sm bg-main text-dark remove_friend"><i class="fa fa-times"> 친구 해제</i></button>
+  {% endif %}
+</div>
+
+
 <nav class="nav nav-tabs">
     <a href="#outline" class="nav-item nav-link text-dark active" data-toggle="tab">Outline</a>
     <a href="#friend" class="nav-item nav-link text-dark" data-toggle="tab">Friends</a>
@@ -10,11 +21,11 @@
 <div class="tab-content">
     <div class="tab-pane fade show active" id="outline">
         <div class="border rounded p-3 my-3">
-            <input class="form-control text-center bg-dark text-white" value="Information" readonly>
+            <input class="form-control text-center" value="Information" readonly>
             <div class="d-flex flex-wrap">
                 <div><input class="form-control text-center" value="Name" readonly></div>
                 <div class="flex-fill">
-                    <input class="form-control text-center bg-white" value="{{ user_o.first_name }}" readonly>
+                    <input class="form-control text-center bg-white" value="{{ user_o.jnghner.name }}" readonly>
                 </div>
             </div>
             <div class="d-flex flex-wrap">
@@ -29,53 +40,35 @@
                     <input class="form-control text-center bg-white" value="{{ user_o.date_joined | date:'Y. m. d. H:i' }}" readonly>
                 </div>
             </div>
+
+            <input class="form-control text-center bg-dark text-white mt-3" value="Friends ({{ user_o.jnghner.friend.all | length }})" readonly>
+            <table class="table table-sm table-bordered table-striped">
+              <tr class="text-center">
+                <th style="text-align: center;">No</th>
+                <th style="width: 90%; text-align: center;">Name</th>
+              </tr>
+              {% for friend in user_o.jnghner.friend.all %}
+              <tr>
+                <td style="text-align: center;">{{ forloop.counter }}</td>
+                <td style="text-align: center;"><a href="{% url 'app_user:profile' friend.user %}">{{friend.user}}</a></td>
+              </tr>
+              {% endfor %}
+            </table>
         </div>
         {% if user_o == user %}
         <div class="d-flex flex-wrap">
             <a href="{% url 'app_user:edit' %}" class="btn bg-main ml-auto text-dark">Edit...</a>
             <a href="{% url 'app_user:leave' user.username %}" class="btn bg-cancel">Leave...</a>
         </div>
-        {% else}
+        {% else %}
         <div class="d-flex flex-wrap">
-            <a href="{% url 'app_user:edit' %}" class="btn bg-main ml-auto btn-go-back">Back</a>
+            <a href="{% url 'app_main:index' %}" class="btn bg-main ml-auto btn-go-back">Back</a>
         </div>
         {% endif %}
     </div>
 
     <div class="tab-pane fade" id="friend">
-        <div class="border rounded p-3 my-3">
-            <input class="form-control text-center bg-dark text-white" value="Friends" readonly>
-            <table class="table">
-              <tr class="text-center">
-                <th>No</th>
-                <th>Name</th>
-              </tr>
-              {% for friend in user.jnghner.friend.all %}
-              <tr>
-                <td>{{forloop.counter}}</td>
-                <td><a href="{% url 'app_user:profile' friend.user %}">{{friend.user}}</a></td>
-              </tr>
-              {% endfor %}
-            </table>
-            <div class="d-flex flex-wrap">
-                <div><input class="form-control text-center" value="Name" readonly></div>
-                <div class="flex-fill">
-                    <input class="form-control text-center bg-white" value="{{ user.first_name }}" readonly>
-                </div>
-            </div>
-            <div class="d-flex flex-wrap">
-                <div><input class="form-control text-center" value="E-Mail" readonly></div>
-                <div class="flex-fill">
-                    <input class="form-control text-center bg-white" value="{{ user.email }}" readonly>
-                </div>
-            </div>
-            <div class="d-flex flex-wrap">
-                <div><input class="form-control text-center" value="Join Date" readonly></div>
-                <div class="flex-fill">
-                    <input class="form-control text-center bg-white" value="{{ user.date_joined | date:'Y. m. d. H:i' }}" readonly>
-                </div>
-            </div>
-        </div>
+
     </div>
 
     <div class="tab-pane fade" id="heart">

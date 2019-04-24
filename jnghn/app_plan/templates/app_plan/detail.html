@@ -82,9 +82,9 @@
                     {% endfor %}
                 </select>
             </div>
-            {% for days in plan.days_set.all %}
+            {% for days in plan.days_set.all|dictsort:'id' %}
             <div class="form-group day-content">
-                <div class="hiddena" id="{{ forloop.counter }}">
+                <div class="hidden-item" id="{{ forloop.counter }}">
                     {% for detail in days.detail_set.all %}
                     <div class="d-flex flex-wrap mb-1">
                         <div><input class="form-control text-center" value="{{ detail.major }}" readonly></div>
